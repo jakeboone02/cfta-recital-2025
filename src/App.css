@@ -4,6 +4,20 @@ body {
   font-size: small;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 1028px) {
+  .container {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 details {
   border: 1px solid #aaa;
   border-radius: 4px;

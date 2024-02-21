@@ -53,7 +53,7 @@ export const App = () => {
   };
 
   return (
-    <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
+    <div className="container">
       <div style={{ flexGrow: 1 }}>
         <div
           style={{
