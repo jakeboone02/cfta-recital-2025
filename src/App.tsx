@@ -1,43 +1,48 @@
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 import { produce } from 'immer';
-import { CSSProperties, useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import './App.css';
 import { Card } from './Card';
-import { Dance, dances as dancesOriginal } from './dances';
+import { Recital, recitals as recitalsOriginal } from './recitals';
 
-const containerStyle: CSSProperties = {
-  width: 444,
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.5rem',
-};
+const localStorageKey = 'recitals-2024';
 
-const dances = (JSON.parse(window.localStorage.getItem('dances')!) as Dance[]) ?? dancesOriginal;
+const recitalsFromLocalStorage =
+  (JSON.parse(window.localStorage.getItem(localStorageKey)!) as Recital[]) ?? recitalsOriginal;
 
 export const App = () => {
-  const [cards, setCards] = useState(dances);
+  const [recitals, setRecitals] = useState(recitalsFromLocalStorage);
 
-  const textList = cards
-    .map(c => `${c.name}\t${c.song} by ${c.artist}\t${c.dancers.join('\t')}`)
-    .join('\n');
+  const textList = `Recital Name\tOrder\tClass/Dance\tSong/Artist\tDancers\n${recitals
+    .map(r =>
+      r.dances
+        .map(
+          (d, idx) =>
+            `${r.recital}\t${idx + 1}\t${d.dance}\t${d.song} by ${d.artist}\t${[...d.dancers]
+              .sort()
+              .join('\t')}`
+        )
+        .join('\n')
+    )
+    .join('\n\n')}`;
 
   useEffect(() => {
-    window.localStorage.setItem('dances', JSON.stringify(cards));
-  }, [cards]);
+    window.localStorage.setItem(localStorageKey, JSON.stringify(recitals));
+  }, [recitals]);
 
-  const save = useCallback(
-    () => window.localStorage.setItem('dances', JSON.stringify(cards)),
-    [cards]
-  );
+  const save = () => window.localStorage.setItem(localStorageKey, JSON.stringify(recitals));
 
-  const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-    setCards(prevCards =>
-      produce(prevCards, draft => {
-        draft.splice(dragIndex, 1);
-        draft.splice(hoverIndex, 0, prevCards[dragIndex]);
+  const moveDance = (recitalIndex: number, dragIndex: number, hoverIndex: number) => {
+    setRecitals(prevRecitals =>
+      produce(prevRecitals, draft => {
+        draft[recitalIndex].dances.splice(dragIndex, 1);
+        draft[recitalIndex].dances.splice(
+          hoverIndex,
+          0,
+          prevRecitals[recitalIndex].dances[dragIndex]
+        );
       })
     );
-  }, []);
+  };
 
   const copy = async () => {
     try {
@@ -48,62 +53,73 @@ export const App = () => {
   };
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div style={{ display: 'flex', gap: '1rem', alignItems: 'space-between' }}>
-        <div>
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-            <a
-              download="recital-order-2023.txt"
-              href={`data:text/plain;charset=utf-8,${encodeURIComponent(
-                cards.map(c => c.name).join('\n')
-              )}`}>
-              Download
-            </a>
-            <button type="button" onClick={() => setCards(dancesOriginal)}>
-              Reset
-            </button>
-            <button type="button" onClick={save}>
-              Save
-            </button>
-          </div>
-          <div style={containerStyle}>
-            {cards.map((card, index) => {
-              const dancersInNextDance = card.dancers.filter(s =>
-                cards[index + 1]?.dancers.includes(s)
-              );
-              const dancersInDanceAfterNext = card.dancers.filter(s =>
-                cards[index + 2]?.dancers.includes(s)
-              );
-              return (
-                <Card
-                  key={card.name}
-                  isLast={index === cards.length - 1}
-                  index={index}
-                  id={card.name}
-                  dance={card}
-                  moveCard={moveCard}
-                  dancersInNextDance={dancersInNextDance}
-                  dancersInDanceAfterNext={dancersInDanceAfterNext}
-                />
-              );
-            })}
-          </div>
-        </div>
-        <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
-          <div>
-            <button type="button" onClick={copy}>
-              Copy list
-            </button>
-          </div>
-          <textarea
-            style={{ overflowX: 'scroll', whiteSpace: 'pre' }}
-            cols={69}
-            rows={30}
-            disabled
-            value={textList}
-          />
+    <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: '1fr 1fr' }}>
+      <div style={{ flexGrow: 1 }}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
+            marginBottom: '0.5rem',
+            width: '100%',
+          }}>
+          {recitals.map((recital, recitalIndex) => (
+            <details key={recital.recital}>
+              <summary>{recital.recital}</summary>
+              {recital.dances.map((dance, idx) => {
+                const dancersInNextDance = dance.dancers.filter(s =>
+                  recital.dances[idx + 1]?.dancers.includes(s)
+                );
+                const dancersInDanceAfterNext = dance.dancers.filter(s =>
+                  recital.dances[idx + 2]?.dancers.includes(s)
+                );
+                return (
+                  <Card
+                    key={dance.dance}
+                    id={dance.dance}
+                    recital={recital.recital}
+                    recitalIndex={recitalIndex}
+                    dance={dance}
+                    index={idx}
+                    isLast={idx === recital.dances.length - 1}
+                    moveDance={moveDance}
+                    dancersInNextDance={dancersInNextDance}
+                    dancersInDanceAfterNext={dancersInDanceAfterNext}
+                  />
+                );
+              })}
+            </details>
+          ))}
         </div>
       </div>
-    </DndProvider>
+      <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'row' }}>
+          <a
+            download="recital-order-2024.txt"
+            href={`data:text/plain;charset=utf-8,${encodeURIComponent(textList)}`}>
+            Download list
+          </a>
+          <button type="button" onClick={copy}>
+            Copy list
+          </button>
+          {/* <button type="button" onClick={save}>
+            Save
+          </button> */}
+          <button
+            type="button"
+            style={{ marginLeft: 'auto' }}
+            onClick={() => setRecitals(recitalsOriginal)}>
+            Reset list
+          </button>
+        </div>
+        <textarea
+          style={{ overflowX: 'scroll', whiteSpace: 'pre' }}
+          cols={69}
+          rows={30}
+          disabled
+          value={textList}
+        />
+      </div>
+    </div>
   );
 };

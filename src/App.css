@@ -1,0 +1,43 @@
+html,
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: small;
+}
+
+details {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
+  margin-bottom: 1em;
+}
+
+details:nth-child(1) {
+  background-color: #f383;
+}
+details:nth-child(2) {
+  background-color: #83f3;
+}
+details:nth-child(3) {
+  background-color: #0d33;
+}
+summary {
+  font-weight: bold;
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+  background-color: #b3b1;
+  cursor: pointer;
+}
+details[open] {
+  padding: 0.5em;
+}
+details[open] summary {
+  margin-bottom: 0.5em;
+}
+
+.card {
+  border-bottom: 1px dashed gray;
+  margin: 0.5rem 0;
+}
+.card:last-child {
+  border-bottom: none;
+}

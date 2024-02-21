@@ -1,0 +1,243 @@
+[
+  {
+    "recital": "Baby1",
+    "dance": "COMBO M 4:15 Ballet",
+    "song": "Go the Distance",
+    "artist": "Kurt Schneider"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "COMBO M 4:15 Tap",
+    "song": "Aren't You Glad You're You",
+    "artist": ""
+  },
+  {
+    "recital": "Baby1",
+    "dance": "PRE WED 11AM Ballet",
+    "song": "It's Such a Good Feeling",
+    "artist": "JJ Heller"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "PRE WED 11AM Tap",
+    "song": "Dance Like Yo Daddy",
+    "artist": "Meghan Trainor"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "COMBO W 4:15 Ballet",
+    "song": "Let Me Dance On",
+    "artist": "Ron Artis II & Thunderstorm Artis"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "COMBO W 4:15 Tap",
+    "song": "Say a Little Prayer",
+    "artist": "Tori Kelly & Pharrell Williams"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "ACRO JR",
+    "song": "Let's Get Loud",
+    "artist": "Jennifer Lopez"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "PRE THURS 11AM ANGIE Ballet",
+    "song": "Spoonful of Sugar",
+    "artist": "JJ Heller"
+  },
+  {
+    "recital": "Baby1",
+    "dance": "PRE THURS 11AM ANGIE Tap",
+    "song": "Wham (Re Bop Bam Bam)",
+    "artist": "Mildred Bailey"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PREDANCE R 11AM MARISSA Ballet",
+    "song": "Fly to Your Heart",
+    "artist": "Selena Gomez"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PREDANCE R 11AM MARISSA Tap",
+    "song": "Ain't She Sweet",
+    "artist": "Frank Sinatra"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PRE WED 10AM Ballet",
+    "song": "It's Such a Good Feeling",
+    "artist": "JJ Heller"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PRE WED 10AM Tap",
+    "song": "Dance Like Yo Daddy",
+    "artist": "Meghan Trainor"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "COMBO W 2:30 Ballet",
+    "song": "Let Me Dance On",
+    "artist": "Ron Artis II & Thunderstorm Artis"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "COMBO W 2:30 Tap",
+    "song": "Say a Little Prayer",
+    "artist": "Tori Kelly & Pharrell Williams"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PRE THURS 4:15 ANGIE Ballet",
+    "song": "Spoonful of Sugar",
+    "artist": "JJ Heller"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "PRE THURS 4:15 ANGIE Tap",
+    "song": "Wham (Re Bop Bam Bam)",
+    "artist": "Mildred Bailey"
+  },
+  {
+    "recital": "Baby2",
+    "dance": "ACRO JR",
+    "song": "Let's Get Loud",
+    "artist": "Jennifer Lopez"
+  },
+  {
+    "recital": "Main",
+    "dance": "MODERN 1A",
+    "song": "Like the Dawn",
+    "artist": "The Oh Hellos"
+  },
+  {
+    "recital": "Main",
+    "dance": "MODERN 2",
+    "song": "What Was I Made For?",
+    "artist": "Billie Eilish"
+  },
+  {
+    "recital": "Main",
+    "dance": "ADULT TAP 1",
+    "song": "Puttin' On the Ritz",
+    "artist": "Pomplamoose"
+  },
+  {
+    "recital": "Main",
+    "dance": "ADULT TAP 2",
+    "song": "Praise the Lord (feat. Thomas Rhett)",
+    "artist": "BRELAND"
+  },
+  {
+    "recital": "Main",
+    "dance": "SpecTAPular",
+    "song": "Let's Get Married",
+    "artist": "Trolls 3"
+  },
+  {
+    "recital": "Main",
+    "dance": "TAP 1",
+    "song": "Joyful",
+    "artist": "Dante Bowe"
+  },
+  {
+    "recital": "Main",
+    "dance": "TAP 2",
+    "song": "Well Git It & Born Ready",
+    "artist": "Tommy Dorsey & His Orchestra, Dove Cameron"
+  },
+  {
+    "recital": "Main",
+    "dance": "TAP 3",
+    "song": "Broadway Melody & Freedom",
+    "artist": "? And Pharrell Williams"
+  },
+  {
+    "recital": "Main",
+    "dance": "BALLET 2",
+    "song": "Kingdom Dance",
+    "artist": "Tangled, Alan Menken"
+  },
+  {
+    "recital": "Main",
+    "dance": "HS MT",
+    "song": "Stick to the Status Quo",
+    "artist": "High School Musical"
+  },
+  {
+    "recital": "Main",
+    "dance": "BALLET 1",
+    "song": "La Valse de L'Amour",
+    "artist": "Cinderella, Patrick Doyle"
+  },
+  {
+    "recital": "Main",
+    "dance": "JAZZ 2",
+    "song": "Masterpiece",
+    "artist": "Tori Kelly, Lecrae"
+  },
+  {
+    "recital": "Main",
+    "dance": "JAZZ 1",
+    "song": "Come Together Now",
+    "artist": "Matt and Kim"
+  },
+  {
+    "recital": "Main",
+    "dance": "MT 1B MARISSA",
+    "song": "Friend Like Me",
+    "artist": "Robin Williams"
+  },
+  {
+    "recital": "Main",
+    "dance": "MODERN 1B MARISSA",
+    "song": "Daughter",
+    "artist": "Sleeping at Last"
+  },
+  {
+    "recital": "Main",
+    "dance": "ACRO 1A & 1B",
+    "song": "Firework",
+    "artist": "Katy Perry"
+  },
+  {
+    "recital": "Main",
+    "dance": "ACRO 2",
+    "song": "Scars to Your Beautiful",
+    "artist": "Alesia Cara"
+  },
+  {
+    "recital": "Main",
+    "dance": "HIP HOP 1",
+    "song": "Watch Me",
+    "artist": "Nick Jonas"
+  },
+  {
+    "recital": "Main",
+    "dance": "HIP HOP 2",
+    "song": "Movin'",
+    "artist": "Group 1 Crew"
+  },
+  {
+    "recital": "Main",
+    "dance": "MT 3",
+    "song": "9 to 5",
+    "artist": "Dolly Parton"
+  },
+  {
+    "recital": "Main",
+    "dance": "MT 1 ",
+    "song": "Almost There",
+    "artist": "Dara Renee"
+  },
+  { "recital": "Main", "dance": "MT 2", "song": "Pink", "artist": "Lizzo" },
+  {
+    "recital": "Main",
+    "dance": "ADULT BALLET",
+    "song": "Skyfall",
+    "artist": "Adele"
+  }
+]
