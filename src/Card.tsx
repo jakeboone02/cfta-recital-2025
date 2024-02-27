@@ -1,3 +1,4 @@
+import stringToColor from 'string-to-color';
 import { Dance } from './recitals';
 
 export interface CardProps {
@@ -13,7 +14,7 @@ export interface CardProps {
 }
 
 export const Card = ({
-  id,
+  id: _id,
   recitalIndex,
   dance,
   index,
@@ -28,7 +29,7 @@ export const Card = ({
         <div style={{ fontWeight: 'bold' }} title={dance.dancers.join('\n')}>
           {dance.dance}
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <div className="no-print" style={{ display: 'flex', gap: '0.5rem' }}>
           <button
             type="button"
             disabled={index === 0}
@@ -43,10 +44,20 @@ export const Card = ({
           </button>
         </div>
       </div>
-      <div style={{ color: 'gray' }}>
+      <strong>
         <em>
           "{dance.song}" by {dance.artist}
         </em>
+      </strong>
+      <div>
+        {dance.dancers.map((d, i) => (
+          <>
+            {i === 0 ? '' : ', '}
+            <span style={{ color: stringToColor(d) }} key={d}>
+              {d}
+            </span>
+          </>
+        ))}
       </div>
       {dancersInNextDance.length > 0 && (
         <>

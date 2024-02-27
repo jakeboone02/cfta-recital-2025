@@ -92,7 +92,7 @@ export const App = () => {
           ))}
         </div>
       </div>
-      <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
+      <div className="no-print" style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
         <div style={{ display: 'flex', gap: '0.5rem', flexDirection: 'row' }}>
           <a
             download="recital-order-2024.txt"

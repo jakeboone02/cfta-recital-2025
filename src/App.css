@@ -26,13 +26,13 @@ details {
 }
 
 details:nth-child(1) {
-  background-color: #f383;
+  background-color: #f381;
 }
 details:nth-child(2) {
-  background-color: #83f3;
+  background-color: #83f1;
 }
 details:nth-child(3) {
-  background-color: #0d33;
+  background-color: #0d31;
 }
 summary {
   font-weight: bold;
@@ -49,9 +49,17 @@ details[open] summary {
 }
 
 .card {
+  background-color: white;
   border-bottom: 1px dashed gray;
   margin: 0.5rem 0;
 }
 .card:last-child {
   border-bottom: none;
+}
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none;
+  }
 }
