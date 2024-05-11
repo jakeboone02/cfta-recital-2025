@@ -1,0 +1,173 @@
+2	Abney, Hanna	Lyrical/Modern 1 Angie	Acro 1A & 1B
+1	Arnold, Kate	Lyrical/Modern 1 Angie
+2	Boone, Juliette	Lyrical/Modern 1 Angie	Jazz 1
+2	Brunk, Emily	Lyrical/Modern 1 Angie	Acro 1A & 1B
+3	Carnahan, Emmanuelle	Lyrical/Modern 1 Angie	SpecTAPular	Tap 3
+1	Clark, Abigail	Lyrical/Modern 1 Angie
+1	Gower, Ryleigh	Lyrical/Modern 1 Angie
+2	Hester, Jillian	Lyrical/Modern 1 Angie	Acro 1A & 1B
+2	Hester, Josslyn	Lyrical/Modern 1 Angie	Acro 1A & 1B
+4	Hunter, Carson	Lyrical/Modern 1 Angie	SpecTAPular	Tap 2	Musical Theater 2B
+2	Kimble, Emmelyn	Lyrical/Modern 1 Angie	Hip Hop 1
+2	Murphy, Brynlie	Lyrical/Modern 1 Angie	Jazz 2
+4	Rawlings, Eden	Lyrical/Modern 1 Angie	SpecTAPular	Tap 2	Musical Theater 2B
+1	Ritter, Emily	Lyrical/Modern 1 Angie
+1	Sorenson, Leila	Lyrical/Modern 1 Angie
+4	Wells, Anneliese	Lyrical/Modern 1 Angie	SpecTAPular	Tap 2	Jazz 2
+2	Albert, Lucille	Lyrical/Modern 2	Acro 2
+3	Block, Tessa	Lyrical/Modern 2	SpecTAPular	Tap 2
+5	Boone, Clara	Lyrical/Modern 2	SpecTAPular	Tap 3	Musical Theater: High School	Acro 2
+2	Hoelzen, Emma	Lyrical/Modern 2	Jazz 2
+2	Lenhart, Olivia	Lyrical/Modern 2	Jazz 2
+3	Massaro, Maddie	Lyrical/Modern 2	Acro 2	Musical Theater 3
+3	Meyer, Bailey	Lyrical/Modern 2	Acro 2	Musical Theater 3
+5	Rawlings, Vivian	Lyrical/Modern 2	SpecTAPular	Tap 3	Acro 2	Musical Theater 3
+1	Sims, Alexandra	Lyrical/Modern 2
+2	Dent, Kim	Tap: Beginning Adult	SpecTAPular
+3	Ellis, Dawn	Tap: Beginning Adult	SpecTAPular	Adult Ballet & Contemporary
+2	Stewart, Lisa	Tap: Beginning Adult	SpecTAPular
+2	Lin, Yvonne	Tap: Beginning Adult	SpecTAPular
+2	Moore, Heidi	Tap: Beginning Adult	SpecTAPular
+2	Ghrist, Tracy	Tap: Beginning Adult	SpecTAPular
+2	Snyder, Nancy	Tap: Beginning Adult	SpecTAPular
+2	Delatorre, Marien	Tap: Beginning Adult	SpecTAPular
+2	Riddle, Jenna	Tap: Beginning Adult	SpecTAPular
+2	Altounian, Kelli	Tap: Advanced Beginning Adult	SpecTAPular
+2	Boone, Jake	Tap: Advanced Beginning Adult	SpecTAPular
+2	Holman, Lisa	Tap: Advanced Beginning Adult	SpecTAPular
+2	Meyerhofer, Amanda	Tap: Advanced Beginning Adult	SpecTAPular
+2	Puckett, Kelsey	Tap: Advanced Beginning Adult	SpecTAPular
+2	Schroff, Amy	Tap: Advanced Beginning Adult	SpecTAPular
+2	Addler, Harper	SpecTAPular	Tap 1
+3	Brown, Rylie	SpecTAPular	Tap 1	Ballet 2
+2	Chen, Kinny	SpecTAPular	Tap 1
+2	Coffee, Ellie	SpecTAPular	Tap 1
+2	Conner, Oliver	SpecTAPular	Tap 1
+2	Rawlings, Grace	SpecTAPular	Tap 1
+3	Shkarayev, Ivan	SpecTAPular	Tap 1	Jazz 1
+2	Tsai, Hanna	SpecTAPular	Tap 1
+2	Wolter, Ava	SpecTAPular	Tap 1
+2	Kinch, Emery	SpecTAPular	Tap 1
+2	Kinch, Hollyn	SpecTAPular	Tap 1
+3	Murphy, Joelle	SpecTAPular	Tap 1	Ballet 1
+3	Bervig, Ava	SpecTAPular	Tap 2	Musical Theater 2B
+2	Bervig, Isla	SpecTAPular	Tap 2
+3	Bervig, Olivia	SpecTAPular	Tap 2	Musical Theater 2B
+2	Block, Kenley	SpecTAPular	Tap 2
+3	Chandiramani, Anysia	SpecTAPular	Tap 2	Acro 1A & 1B
+3	Chandiramani, Zyah	SpecTAPular	Tap 2	Acro 1A & 1B
+3	Dorman, Grace	SpecTAPular	Tap 2	Musical Theater 2B
+2	Kidd, Avery 	SpecTAPular	Tap 2
+3	Morkunas, Charis	SpecTAPular	Tap 2	Hip Hop 1
+2	O'Connor, Caitlyn	SpecTAPular	Tap 2
+2	Overson, Adalynn	SpecTAPular	Tap 2
+2	Wells, Jonah	SpecTAPular	Tap 2
+3	Boone, Asher	SpecTAPular	Tap 3	Hip Hop 2
+4	Hunter, Lainey	SpecTAPular	Tap 3	Acro 2	Musical Theater 3
+3	Hunter, Maia	SpecTAPular	Tap 3	Musical Theater: High School
+3	Morkunas, Phoenix	SpecTAPular	Tap 3	Musical Theater: High School
+1	Arce, Alianna	Ballet 2
+1	Arce, Lucianna	Ballet 2
+2	Balzarini, Brooke	Ballet 2	Hip Hop 1
+1	Bichsel, Addilyn	Ballet 2
+2	Bow, Shelby	Ballet 2	Acro 1A & 1B
+1	Fuss, Jane	Ballet 2
+1	Grubor, Karsyn	Ballet 2
+1	Jefferson, Avery	Ballet 2
+1	Madana, Akshara	Ballet 2
+1	Nicely, Zari	Ballet 2
+1	Reddy Kambham, Arianna	Ballet 2
+2	Vetter, Alex	Ballet 2	Acro 1A & 1B
+1	Thakur, Mayna	Ballet 2
+1	Poku, Maleah	Musical Theater: High School
+1	Poku, Rebekah	Musical Theater: High School
+1	Armstrong, Crystal	Ballet 1
+1	Armstrong, Natalie	Ballet 1
+1	Balla, Avyakta	Ballet 1
+1	Benavides, Ellie	Ballet 1
+1	Dillon, Paisley	Ballet 1
+1	Iamiceli, Lucia	Ballet 1
+1	Lonca, Abigail	Ballet 1
+1	Martin, Stella	Ballet 1
+1	Musani, Ishika	Ballet 1
+1	Kirara, Makenya	Ballet 1
+1	Nguyen, Madeline	Ballet 1
+1	Serban, Emily	Ballet 1
+1	Spirko, Emerson	Ballet 1
+2	Arce, Gianna	Jazz 2	Hip Hop 2
+1	Carmona, Selah	Jazz 2
+1	Phetteplace, Lyla	Jazz 2
+1	Ramirez, Gabriella	Jazz 2
+1	Stevens, Reagan	Jazz 2
+2	Sutton, Harper	Jazz 2	Hip Hop 2
+1	Wells, Emma	Jazz 2
+1	Broderick, Madison	Jazz 1
+1	Focht, Delaney	Jazz 1
+1	Ortiz, Gabriela	Jazz 1
+1	Reeves, Makenna	Jazz 1
+1	Sari Teriz, Valeria	Jazz 1
+1	Shkarayev, Kira	Jazz 1
+2	Vaughn, Hailey	Jazz 1	Hip Hop 1
+1	Jernigan, Alyse	Jazz 1
+1	Conner, Amaris	Jazz 1
+2	Flandrau, Mackenzie	Musical Theater 1 Marissa	Hip Hop 1
+2	Flandrau, Olivia	Musical Theater 1 Marissa	Hip Hop 1
+1	Kidd, Beckham	Musical Theater 1 Marissa
+1	Roberts, Everly 	Musical Theater 1 Marissa
+1	Deminsky, Lilliana	Musical Theater 1 Marissa
+1	Moore, Elli	Musical Theater 1 Marissa
+1	Bala, Elizabeth	Lyrical/Modern 1 Marissa
+2	Hernandez, Delaney	Lyrical/Modern 1 Marissa	Hip Hop 1
+2	Hoelzen, Kate	Lyrical/Modern 1 Marissa	Hip Hop 1
+2	Wilson, Presleigh	Lyrical/Modern 1 Marissa	Hip Hop 1
+1	Fontes, Amelia	Lyrical/Modern 1 Marissa
+1	Andersen, Sophia	Acro 1A & 1B
+1	Burnham, Julie	Acro 1A & 1B
+2	Coates, Amelia	Acro 1A & 1B	Musical Theater 1 Emilee
+1	Delgado, Lola	Acro 1A & 1B
+1	Farcas, Brielle	Acro 1A & 1B
+1	Neypes, Grace	Acro 1A & 1B
+1	Patterson, Shay	Acro 1A & 1B
+1	Stonham, Isabelle	Acro 1A & 1B
+2	Rajesh, Akshara	Acro 1A & 1B	Musical Theater 2B
+2	Abuhmaiden, Isla	Acro 1A & 1B	Musical Theater 1 Emilee
+2	Akert, Alaina	Acro 1A & 1B	Hip Hop 2
+1	Carmona, Sofia	Acro 1A & 1B
+2	Foley, Abbey	Acro 1A & 1B	Musical Theater 1 Emilee
+1	Hayslett, Grace	Acro 1A & 1B
+1	Song, Irene	Acro 1A & 1B
+1	Akert, Madi	Acro 2
+1	Callanan-Attebery, Larsyn	Acro 2
+1	Haro, Angie	Acro 2
+1	Jefferson, Mayah	Acro 2
+1	Miller, Grace	Acro 2
+2	Larish, Eva	Hip Hop 1	Musical Theater 1 Emilee
+1	Lorenzen, Zoey	Hip Hop 1
+2	Wells, Mikaela	Hip Hop 1	Musical Theater 2B
+1	Burz, Madi	Musical Theater 3
+1	Hamilton, Kylie	Musical Theater 3
+1	Stock, Ella	Musical Theater 3
+1	Wells, Ava	Musical Theater 3
+1	Johnson, Giana	Musical Theater 3
+1	Arena, Eloise	Musical Theater 1 Emilee
+1	Bukowski, Maylee	Musical Theater 1 Emilee
+1	Larish, Ellie	Musical Theater 1 Emilee
+1	Mann, Eleanor	Musical Theater 1 Emilee
+1	Mauldin, Everly	Musical Theater 1 Emilee
+1	Patel, Naomi	Musical Theater 1 Emilee
+1	Presser, Adaline	Musical Theater 1 Emilee
+1	Vilorio, Emma	Musical Theater 1 Emilee
+1	Addler, Audree	Musical Theater 2B
+1	Bala, Loredana	Musical Theater 2B
+1	Clarke, Christina	Musical Theater 2B
+1	Demas, Briddian	Musical Theater 2B
+1	Iverson, Paisley	Musical Theater 2B
+1	Overson, Brielle	Musical Theater 2B
+1	Santina, Camryn	Musical Theater 2B
+1	Widney, Madison	Musical Theater 2B
+1	Avila, Marisol	Adult Ballet & Contemporary
+1	Chavez, Sarah	Adult Ballet & Contemporary
+1	Danielson, Kathryn	Adult Ballet & Contemporary
+1	Gaio, Katilin	Adult Ballet & Contemporary
+1	Klunk, Nicole	Adult Ballet & Contemporary
+1	Wo, Kathleen	Adult Ballet & Contemporary
