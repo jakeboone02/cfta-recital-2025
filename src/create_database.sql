@@ -25,9 +25,18 @@ CREATE TABLE recital_group_orders (
   previous_dance_id int
 );
 
--- Dances
+CREATE TABLE recitals (
+  id int PRIMARY KEY,
+  recital_group_part_1 int check (recital_group_part_1 IN (1, 2, 3)) null,
+  recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null,
+  baby_dance_ids text
+);
 
--- Recital Group 1
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (1, 1, 2, '30,31,32,33');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (2, 2, 3, '34,35,36,37,38,39');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (3, 3, 1, '40,41,42,43');
+
+
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (1, 1, 'Tuesday 4:15', 'Acro 1', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (2, 1, 'Wednesday 5:15', 'Acro Jr.', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (3, 1, 'Wednesday 7:15', 'Adult Tap 2', 'Ms. Angie', 1);
@@ -40,7 +49,6 @@ INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (10, 1, 'Thursday 5:15', 'Musical Theater 1', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (11, 1, 'Wednesday 6:15', 'Tap 3', 'Ms. Angie', 1);
 
--- Recital Group 2
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (12, 2, 'Tuesday 5:15', 'Acro 2', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (13, 2, 'Tuesday 7:15', 'Adult Ballet/Contemporary', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (14, 2, 'Monday 5:15', 'Ballet 1', 'Ms. Marissa');
@@ -51,7 +59,6 @@ INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (19, 2, 'Wednesday 7:15', 'Musical Theater 3', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (20, 2, 'Wednesday 4:15', 'Tap 1', 'Ms. Angie', 1);
 
--- Recital Group 3
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (21, 3, 'Wednesday 6:15', 'Acro 3', 'Ms. Emilee');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (22, 3, 'Monday 7:15', 'Adult Tap 1', 'Ms. Angie', 1);
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (23, 3, 'Tuesday 6:15', 'Ballet 2', 'Ms. Jillian');
@@ -62,15 +69,12 @@ INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (28, 3, 'Tuesday 7:15', 'Musical Theater: HS', 'Ms. Jillian');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (29, 3, 'Wednesday 5:15', 'Tap 2', 'Ms. Angie', 1);
 
--- Single Recital Dances
 
--- Recital 1
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (30, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (31, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15) Daddy/Daughter', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (32, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (33, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy Daughter', 'Ms. Marissa');
 
--- Recital 2
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (34, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (35, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy Daughter', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (36, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie');
@@ -78,13 +82,11 @@ INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (38, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (39, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy Daughter', 'Ms. Jillian');
 
--- Recital 3
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (40, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (41, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy Daughter', 'Ms. Jillian');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (42, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00)', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (43, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy Daughter', 'Ms. Marissa');
 
--- Dancers
 
 INSERT INTO dancers (name) VALUES ('Abbey Foley');
 INSERT INTO dancers (name) VALUES ('Abigail Clark');
@@ -359,7 +361,6 @@ INSERT INTO dancers (name) VALUES ('Zoe Griffin');
 INSERT INTO dancers (name) VALUES ('Zoey Moore');
 INSERT INTO dancers (name) VALUES ('Zyah Chandiramani');
 
--- Dance Dancers
 
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Shelby Bow') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Julie Burnham') /* Acro 1 */;
@@ -407,6 +408,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (2, 'Isa Segura') /* Acro Jr
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (2, 'Sofia Shearer') /* Acro Jr. */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (2, 'Elli Wetmore') /* Acro Jr. */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (13, 'Dawn Ellis') /* Adult Ballet & Contemp Combo */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (13, 'Emilee Machowski') /* Adult Ballet & Contemp Combo */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (13, 'Tosha Focht') /* Adult Ballet & Contemp Combo */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (13, 'Jade Franks') /* Adult Ballet & Contemp Combo */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (13, 'Kristi Hunter') /* Adult Ballet & Contemp Combo */;

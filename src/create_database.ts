@@ -1,15 +1,23 @@
 import { Database } from 'bun:sqlite';
 
-const db = new Database();
+const db_file = Bun.file(`${import.meta.dir}/database.db`);
 
-const statements = (await Bun.file('./create_database.sql').text())
-  .split(/;[\r\n]+/g)
-  .filter(s => s.startsWith('CREATE') || s.startsWith('INSERT'));
-
-for (const sql of statements) {
-  // console.log(sql);
-  db.run(sql);
+if (await db_file.exists()) {
+  await db_file.delete();
 }
+
+const db = new Database(`${import.meta.dir}/database.db`);
+
+const statements = (await Bun.file(`${import.meta.dir}/create_database.sql`).text())
+  .split(/;[\r\n]+/g)
+  .filter(s => s.trim().startsWith('CREATE') || s.trim().startsWith('INSERT'));
+
+await db.transaction(() => {
+  for (const sql of statements) {
+    // console.log(sql);
+    db.run(sql);
+  }
+})();
 
 // console.log(db.query('SELECT count(*) dance_count FROM dances').all()[0]);
 // console.log(
@@ -42,3 +50,5 @@ console.log(
     )
     .join('\n')
 );
+
+db.close();
