@@ -14,8 +14,8 @@ const statements = (await Bun.file(`${import.meta.dir}/create_database.sql`).tex
 
 await db.transaction(() => {
   for (const sql of statements) {
-    // console.log(sql);
-    db.run(sql);
+    console.log(sql.split('\n').join(''));
+    console.log(JSON.stringify(db.run(sql)));
   }
 })();
 
@@ -26,6 +26,7 @@ await db.transaction(() => {
 // console.log(db.query('SELECT count(*) dancer_count FROM dancers').all()[0]);
 // console.log(db.query('SELECT count(*) dance_dancer_count FROM dance_dancers').all()[0]);
 
+// Test query
 console.log(
   db
     .query(

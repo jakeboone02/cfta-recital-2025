@@ -1,0 +1,149 @@
+import { Database } from 'bun:sqlite';
+const db = new Database(`${import.meta.dir}/database.db`);
+
+// All dances by recital
+console.table(
+  db
+    .query(
+      `
+WITH RECURSIVE dance_order AS (
+  SELECT recital_id, dance_id, follows_dance_id, dance_id AS start_id, 0 AS level
+    FROM recital_group_orders
+   WHERE follows_dance_id IS NULL
+  UNION ALL
+  SELECT d.recital_id, d.dance_id, d.follows_dance_id, o.start_id, level + 1
+    FROM recital_group_orders d
+         JOIN dance_order o ON o.dance_id = d.follows_dance_id
+)
+SELECT *
+,CASE WHEN dancing_next IS NOT NULL THEN (SELECT COUNT(*) FROM (SELECT value FROM json_each(dancers) AS t1 INTERSECT SELECT value FROM json_each(dancing_next) AS t2)) END AS agg_dancing_next
+,CASE WHEN dancing_next_next IS NOT NULL THEN (SELECT COUNT(*) FROM (SELECT value FROM json_each(dancers) AS t1 INTERSECT SELECT value FROM json_each(dancing_next_next) AS t2)) END AS agg_dancing_next_next
+-- SELECT recital, part, recital_group, dance, id, dancer_count
+--       ,(SELECT COUNT(*) FROM json_each(dancers)) dancers
+--       -- ,CASE WHEN dancing_next IS NOT NULL THEN (SELECT group_concat(value, ', ') FROM json_each(dancers) AS t1 INTERSECT SELECT group_concat(value, ', ') FROM json_each(dancing_next) AS t2) END AS dancing_next
+--       -- ,CASE WHEN dancing_next_next IS NOT NULL THEN (SELECT group_concat(value, ', ') FROM json_each(dancers) AS t1 INTERSECT SELECT group_concat(value, ', ') FROM json_each(dancing_next_next) AS t2) END AS dancing_next_next
+  FROM (
+SELECT recital, part, recital_group, dance, id, dancer_count
+      -- ,LEAD(SELECT group_concat(dancer) FROM (SELECT dancers FROM json_each(dancers) WHERE json_each(dancers).value IN (SELECT dancer FROM json_each(dancers))), 1) OVER (PARTITION BY recital, part, recital_group ORDER BY level) dancing_next
+      -- ,CASE WHEN LEAD(dancers, 1) OVER (PARTITION BY recital, part, recital_group ORDER BY level) IS NOT NULL THEN (SELECT group_concat(value, ', ') FROM json_each(dancers) AS t1 INTERSECT SELECT group_concat(value, ', ') FROM json_each(LEAD(dancers, 1) OVER (PARTITION BY recital, part, recital_group ORDER BY level)) AS t2) END AS dancing_next
+      ,CASE WHEN dancers IS NOT NULL THEN dancers ELSE tap_dancers END dancers
+      ,LEAD(dancers, 1) OVER (PARTITION BY recital ORDER BY CASE recital_group WHEN 'Tap' THEN 0 ELSE 1 END, part, level) dancing_next
+      ,LEAD(dancers, 2) OVER (PARTITION BY recital ORDER BY CASE recital_group WHEN 'Tap' THEN 0 ELSE 1 END, part, level) dancing_next_next
+  FROM (
+  SELECT 'Recital ' || r1.id recital
+          ,'Part 1' part
+          ,'Group ' || d1.recital_group recital_group
+          ,d1.dance
+          ,d1.id dance_id
+    FROM recitals r1
+         INNER JOIN dances d1
+           ON r1.recital_group_part_1 = d1.recital_group
+  UNION ALL
+    SELECT 'Recital ' || r2.id recital
+          ,'Part 2' part
+          ,'Group ' || d2.recital_group recital_group
+          ,d2.dance
+          ,d2.id dance_id
+    FROM recitals r2
+         INNER JOIN dances d2
+           ON r2.recital_group_part_2 = d2.recital_group
+  UNION ALL
+    SELECT 'Recital ' || rb.id recital
+          ,'Part ?' part
+          ,'Babies' recital_group
+          ,db.dance
+          ,db.id dance_id
+    FROM recitals rb
+         INNER JOIN dances db
+           ON db.id IN (SELECT value FROM json_each(rb.baby_dance_ids))
+  UNION ALL
+    SELECT 'Recital ' || rs.id recital
+          ,'Part 1' part
+          ,'Tap' recital_group
+          ,'SpecTAPular' dance
+          ,-1 dance_id
+    FROM recitals rs
+) all_dances
+ LEFT OUTER JOIN (SELECT d.id
+                   ,COUNT(*) dancer_count
+                   ,'[' || group_concat(json_quote(dd.dancer), ',') || ']' AS dancers
+                FROM dances d INNER JOIN dance_dancers dd ON d.id = dd.dance_id
+               GROUP BY d.id) dc ON dc.id = all_dances.dance_id
+ LEFT OUTER JOIN (SELECT ROW_NUMBER() OVER (ORDER BY start_id, level) AS rownum
+                   ,recital_id
+                   ,dance_id
+                   ,follows_dance_id
+                   ,start_id
+                   ,level
+               FROM dance_order
+              ORDER BY start_id, level) do ON do.dance_id = all_dances.dance_id
+ LEFT OUTER JOIN (SELECT -1 AS ds_id
+                   ,COUNT(*) ds_dancer_count
+                   ,'[' || group_concat(json_quote(dd.dancer), ',') || ']' AS tap_dancers
+                FROM dances d INNER JOIN dance_dancers dd ON d.id = dd.dance_id
+               WHERE spectapular = 1) ds ON ds.ds_id = all_dances.dance_id
+ ORDER BY recital
+         ,CASE recital_group WHEN 'Tap' THEN 0 ELSE 1 END
+         ,part
+         ,level
+)`
+    )
+    .all()
+    .map(
+      (r, i) =>
+        `${
+          i === 0
+            ? Object.keys(r)
+                .sort((a, b) => (a > b ? 1 : -1))
+                .map(r => `"${r}"`)
+                .join(',') + '\n'
+            : ''
+        }${Object.entries(r)
+          .sort((a, b) => (a[0] > b[0] ? 1 : -1))
+          .map(r => `"${`${r[1] ?? ''}`.replaceAll('"', '""')}"`)
+          .join(',')}`
+    )
+    .join('\n')
+);
+
+// // Dance order by group
+// console.table(
+//   db.query(
+//     `WITH RECURSIVE dance_order AS (
+//   SELECT recital_id, dance_id, follows_dance_id, dance_id AS start_id, 0 AS level
+//   FROM recital_group_orders
+//   WHERE follows_dance_id IS NULL
+//   UNION ALL
+//   SELECT d.recital_id, d.dance_id, d.follows_dance_id, o.start_id, level + 1
+//   FROM recital_group_orders d
+//   JOIN dance_order o ON o.dance_id = d.follows_dance_id
+// )
+// SELECT ROW_NUMBER() OVER (ORDER BY start_id, level) AS rownum, recital_id, dance_id, follows_dance_id, start_id, level
+// FROM dance_order
+// ORDER BY start_id, level;`
+//   )
+// );
+
+db.close();
+
+/*
+CASE WHEN LEAD(dancers, 1) OVER (ORDER BY rownum) IS NOT NULL THEN
+(SELECT COUNT(*) FROM json_each(dancers) AS t1
+ INTERSECT
+ SELECT COUNT(*) FROM json_each(LEAD(dancers) OVER (ORDER BY rownum)) AS t2)
+ELSE 0 END AS common_dancers
+FROM dance_order;
+
+
+      ,CASE WHEN LEAD(dancers, 1) OVER (PARTITION BY recital, part, recital_group ORDER BY level) IS NOT NULL
+           THEN (SELECT group_concat(value, ', ')
+                   FROM json_each(dancers) AS t1
+                 INTERSECT
+                 SELECT group_concat(value, ', ')
+                   FROM json_each(LEAD(dancers, 1) OVER (PARTITION BY recital, part, recital_group ORDER BY level)) AS t2
+                )
+           ELSE NULL
+           END
+       AS dancing_next
+
+*/

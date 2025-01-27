@@ -19,22 +19,21 @@ CREATE TABLE dance_dancers (
 );
 
 CREATE TABLE recital_group_orders (
-  id int PRIMARY KEY,
-  recital_group int check (recital_group IN (1, 2, 3)) null,
-  dance_id int,
-  previous_dance_id int
+  recital_id text check (recital_ID IN ('A', 'B', 'C')) null,
+  dance_id int not null,
+  follows_dance_id int
 );
 
 CREATE TABLE recitals (
-  id int PRIMARY KEY,
+  id text PRIMARY KEY check (id IN ('A', 'B', 'C')),
   recital_group_part_1 int check (recital_group_part_1 IN (1, 2, 3)) null,
   recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null,
   baby_dance_ids text
 );
 
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (1, 1, 2, '30,31,32,33');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (2, 2, 3, '34,35,36,37,38,39');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES (3, 3, 1, '40,41,42,43');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('A', 1, 2, '[30,31,32,33]');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('B', 2, 3, '[34,35,36,37,38,39]');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('C', 3, 1, '[40,41,42,43]');
 
 
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (1, 1, 'Tuesday 4:15', 'Acro 1', 'Ms. Emilee');
@@ -73,19 +72,73 @@ INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapu
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (30, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (31, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15) Daddy/Daughter', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (32, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (33, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy Daughter', 'Ms. Marissa');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (33, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa');
 
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (34, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (35, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy Daughter', 'Ms. Marissa');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (35, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy/Daughter', 'Ms. Marissa');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (36, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (37, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy Daughter', 'Ms. Angie');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (37, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy/Daughter', 'Ms. Angie');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (38, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (39, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy Daughter', 'Ms. Jillian');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (39, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy/Daughter', 'Ms. Jillian');
 
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (40, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (41, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy Daughter', 'Ms. Jillian');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (41, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Jillian');
 INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (42, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (43, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy Daughter', 'Ms. Marissa');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (43, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy/Daughter', 'Ms. Marissa');
+
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (44, NULL, NULL, 'SpecTAPular A', 'Ms. Angie');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (45, NULL, NULL, 'SpecTAPular B', 'Ms. Angie');
+INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (46, NULL, NULL, 'SpecTAPular C', 'Ms. Angie');
+
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 3, NULL);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 2, 3);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 1, 2);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 4, 1);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 5, 4);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 6, 5);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 7, 6);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 8, 7);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 9, 8);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 10, 9);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 11, 10);
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 14, NULL);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 13, 14);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 12, 13);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 15, 12);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 16, 15);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 17, 16);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 18, 17);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 19, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 20, 19);
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 23, NULL);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 22, 23);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 21, 22);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 24, 21);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 25, 24);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 26, 25);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 27, 26);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 28, 27);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 29, 28);
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 4);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 8);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 12);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 16);
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 14);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 36, 22);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 37, 26);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 38, 24);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 39, 28);
+
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 40, 24);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 41, 28);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 42, 4);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 43, 8);
 
 
 INSERT INTO dancers (name) VALUES ('Abbey Foley');
@@ -232,13 +285,11 @@ INSERT INTO dancers (name) VALUES ('Jane Hicks');
 INSERT INTO dancers (name) VALUES ('Janelle Stayton');
 INSERT INTO dancers (name) VALUES ('Jenna Meyerhofer');
 INSERT INTO dancers (name) VALUES ('Jessica Scorzetti');
-INSERT INTO dancers (name) VALUES ('Jillian Heer');
 INSERT INTO dancers (name) VALUES ('Jillian Hester');
 INSERT INTO dancers (name) VALUES ('Jillian Stefanski');
 INSERT INTO dancers (name) VALUES ('Jodi DeLaTorre');
 INSERT INTO dancers (name) VALUES ('Joelle Murphy');
 INSERT INTO dancers (name) VALUES ('Jonah Wells');
-INSERT INTO dancers (name) VALUES ('Josslyn Heer');
 INSERT INTO dancers (name) VALUES ('Josslyn Hester');
 INSERT INTO dancers (name) VALUES ('Juliana Conner');
 INSERT INTO dancers (name) VALUES ('Julie Burnham');
@@ -571,8 +622,8 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Harper Addler') /* Lyr
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Juliette Boone') /* Lyrical/Modern 1 - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Emily Brunk') /* Lyrical/Modern 1 - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Emma Elgin') /* Lyrical/Modern 1 - Thursday */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Jillian Heer') /* Lyrical/Modern 1 - Thursday */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Josslyn Heer') /* Lyrical/Modern 1 - Thursday */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Jillian Hester') /* Lyrical/Modern 1 - Thursday */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Josslyn Hester') /* Lyrical/Modern 1 - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Delaney Hernaez') /* Lyrical/Modern 1 - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Kate Hoelzen') /* Lyrical/Modern 1 - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (18, 'Amelia Hurtado') /* Lyrical/Modern 1 - Thursday */;
