@@ -84,9 +84,9 @@ interface UpdateHighlightedIDsAction {
 const highlightedIDsReducer = (state: number[], action: UpdateHighlightedIDsAction): number[] => {
   switch (action.type) {
     case 'add':
-      return [...state, action.id];
+      return state.includes(action.id) ? state : [...state, action.id];
     case 'remove':
-      return [...state].filter(id => id !== action.id);
+      return state.filter(id => id !== action.id);
     default:
       return state;
   }
