@@ -1,9 +1,21 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useReducer, useState } from 'react';
 import type { RecitalDanceInstance } from './types';
 
 declare const initialData: RecitalDanceInstance[];
 
 type MoveDance = (id: number | null, direction: 'up' | 'down' | number | null) => Promise<void>;
+
+interface DanceRowProps {
+  dance: RecitalDanceInstance;
+  moveDance: MoveDance;
+  prev_prev_dance?: RecitalDanceInstance;
+  prev_dance?: RecitalDanceInstance;
+  next_dance?: RecitalDanceInstance;
+  next_next_dance?: RecitalDanceInstance;
+  highlight?: boolean;
+}
+
+const colSpan = 6;
 
 export const DanceRow = ({
   dance,
@@ -12,14 +24,8 @@ export const DanceRow = ({
   prev_dance,
   next_dance,
   next_next_dance,
-}: {
-  dance: RecitalDanceInstance;
-  moveDance: MoveDance;
-  prev_prev_dance?: RecitalDanceInstance;
-  prev_dance?: RecitalDanceInstance;
-  next_dance?: RecitalDanceInstance;
-  next_next_dance?: RecitalDanceInstance;
-}) => {
+  highlight,
+}: DanceRowProps) => {
   const md_up = () =>
     moveDance(dance.id, dance.recital_group === 'B' ? prev_prev_dance?.id ?? null : 'up');
   const md_down = () =>
@@ -34,7 +40,11 @@ export const DanceRow = ({
     (dance.recital_group === 'B' && next_next_dance?.recital !== dance.recital);
 
   return (
-    <tr>
+    <tr
+      style={{
+        backgroundColor: highlight ? 'color(srgb 0.4 0.2 0.6 / 0.26)' : undefined,
+        transition: 'background-color 0.8s ease-in-out',
+      }}>
       <td style={{ textWrap: 'nowrap' }}>
         {(dance.id ?? 'X') === 'X' ? (
           ''
@@ -48,14 +58,6 @@ export const DanceRow = ({
             </button>
           </div>
         )}
-      </td>
-      {/* <td style={{ textWrap: 'nowrap' }}>{dance.recital}</td> */}
-      <td>{dance.part}</td>
-      <td>
-        <div className="dance">
-          <span>{dance.recital_group}</span>
-          <span style={{ fontSize: 'small', color: 'gray' }}>{dance.id}</span>
-        </div>
       </td>
       <td title={`ID: ${dance.id}, Follows: ${dance.follows_dance_id}`}>
         <div className="dance">
@@ -74,8 +76,25 @@ export const DanceRow = ({
   );
 };
 
+interface UpdateHighlightedIDsAction {
+  type: 'add' | 'remove';
+  id: number;
+}
+
+const highlightedIDsReducer = (state: number[], action: UpdateHighlightedIDsAction): number[] => {
+  switch (action.type) {
+    case 'add':
+      return [...state, action.id];
+    case 'remove':
+      return [...state].filter(id => id !== action.id);
+    default:
+      return state;
+  }
+};
+
 export const App = () => {
   const [data, setData] = useState<RecitalDanceInstance[]>(initialData);
+  const [highlightedIDs, highlightedIDsDispatch] = useReducer(highlightedIDsReducer, []);
 
   const fetchData = async () => {
     const response = await fetch('/api/data');
@@ -84,6 +103,7 @@ export const App = () => {
   };
 
   const moveDance: MoveDance = async (id, direction) => {
+    if (id === null) return;
     const response = await fetch('/api/sort', {
       method: 'POST',
       body: JSON.stringify([id, direction]),
@@ -91,12 +111,18 @@ export const App = () => {
     const data = (await response.json()) as RecitalDanceInstance[];
     console.log(data);
     fetchData();
+    highlightedIDsDispatch({ type: 'add', id });
+    setTimeout(() => highlightedIDsDispatch({ type: 'remove', id }), 500);
   };
 
   return (
     <div className="App">
-      Hello, Dance World!
-      <button onClick={() => fetchData()}>Fetch data</button>
+      <h3>
+        Copper Hills Center for the Arts 2025 Dance Recital Show Order
+        <span style={{ float: 'right' }}>
+          <button onClick={() => fetchData()}>⟳</button>
+        </span>
+      </h3>
       <table>
         <tbody>
           {data.map((dance, idx) => {
@@ -110,20 +136,34 @@ export const App = () => {
               <Fragment key={`${dance.recital}-${dance.id}`}>
                 {dance.recital !== data[idx - 1]?.recital && (
                   <>
+                    {data[idx - 1] && (
+                      <tr>
+                        <th
+                          colSpan={colSpan}
+                          style={{ borderLeft: '2px solid white', borderRight: '2px solid white' }}>
+                          {'\xA0'}
+                        </th>
+                      </tr>
+                    )}
                     <tr>
-                      <th colSpan={8}>Recital {dance.recital}</th>
+                      <th colSpan={colSpan}>Recital {dance.recital}</th>
                     </tr>
                     <tr>
-                      <th></th>
-                      {/* <th>Recital</th> */}
-                      <th>Part</th>
-                      <th>Group</th>
+                      <th>Move</th>
                       <th>Dance</th>
                       <th>Dancers</th>
                       <th>In Next Dance</th>
                       <th>In Dance After Next</th>
                     </tr>
                   </>
+                )}
+                {dance.part !== data[idx - 1]?.part && (
+                  <tr>
+                    <td>{'\xA0'}</td>
+                    <td colSpan={colSpan - 1} style={{ fontStyle: 'italic', fontWeight: 'bold' }}>
+                      Part {dance.part} (Group {next_dance?.recital_group})
+                    </td>
+                  </tr>
                 )}
                 <DanceRow
                   dance={dance}
@@ -132,6 +172,7 @@ export const App = () => {
                   prev_dance={prev_dance}
                   next_dance={next_dance}
                   next_next_dance={next_next_dance}
+                  highlight={highlightedIDs.includes(dance.id!)}
                 />
               </Fragment>
             );
