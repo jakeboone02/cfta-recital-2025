@@ -488,7 +488,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Amy Schroff') /* Adult 
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Justine Persons') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Angie Boone') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Marissa Calderone') /* Adult Tap 2 */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Jillian Stefanski') /* Adult Tap 2 */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Jillian Stefanski') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Sophia Andersen') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Clara Boone') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Abigail Clark') /* Ballet & Contemporary Combo: HS */;
