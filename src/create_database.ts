@@ -1,14 +1,19 @@
 import { Database } from 'bun:sqlite';
 
-const db_file = Bun.file(`${import.meta.dir}/database.db`);
+const db_file_path = `${import.meta.dir}/database.db`;
+
+const db_file = Bun.file(db_file_path);
 
 if (await db_file.exists()) {
   await db_file.delete();
 }
 
-const db = new Database(`${import.meta.dir}/database.db`);
+const db = new Database(db_file_path);
 
 const statements = (await Bun.file(`${import.meta.dir}/create_database.sql`).text())
+  .split('\n')
+  .filter(s => s.trim().length > 0 && !s.trim().startsWith('--'))
+  .join('\n')
   .split(/;[\r\n]+/g)
   .filter(s => s.trim().startsWith('CREATE') || s.trim().startsWith('INSERT'));
 
@@ -19,14 +24,7 @@ await db.transaction(() => {
   }
 })();
 
-// console.log(db.query('SELECT count(*) dance_count FROM dances').all()[0]);
-// console.log(
-//   db.query('SELECT count(*) spectapular_count FROM dances where spectapular = 1').all()[0]
-// );
-// console.log(db.query('SELECT count(*) dancer_count FROM dancers').all()[0]);
-// console.log(db.query('SELECT count(*) dance_dancer_count FROM dance_dancers').all()[0]);
-
-// Test query
+// Test query: Dancers with multiple dances in the same group
 console.log(
   db
     .query(

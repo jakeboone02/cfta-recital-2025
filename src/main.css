@@ -34,5 +34,23 @@ td {
   justify-content: space-between;
   gap: 0.5rem;
   text-wrap: nowrap;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.dance .dance-and-song {
+  display: flex;
+  gap: 0.2rem;
+  flex-direction: column;
+}
+
+.song-and-artist {
+  display: flex;
+  gap: 0.5rem;
+  /* text-wrap: nowrap; */
+  font-size: small;
+  opacity: 0.8;
+}
+
+.song-and-artist .song {
+  font-weight: bold;
 }

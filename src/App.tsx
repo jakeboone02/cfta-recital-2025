@@ -17,6 +17,39 @@ interface DanceRowProps {
 
 const colSpan = 6;
 
+const toCsv = (jsonArray: RecitalDanceInstance[]) => {
+  const headers = Object.keys(jsonArray[0]) as (keyof RecitalDanceInstance)[];
+  const csvRows = ['overall_order', headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')];
+
+  return csvRows
+    .concat(
+      jsonArray.map((row, idx) =>
+        [`${idx + 1}`]
+          .concat(
+            headers.map(header => {
+              if (header === 'dancers') return row[header].join(',');
+              const baseString = `${row[header] ?? ''}`;
+              return baseString.includes(',')
+                ? `"${baseString.replaceAll('"', '""')}"`
+                : baseString;
+            })
+          )
+          .join(',')
+      )
+    )
+    .join('\n');
+};
+
+const styleColors = {
+  Acro: 'firebrick',
+  Ballet: 'lightskyblue',
+  'Lyrical/Modern': 'hotpink',
+  Jazz: 'orange',
+  'Musical Theater': 'rebeccapurple',
+  Tap: 'green',
+  UNKNOWN: 'gray',
+};
+
 export const DanceRow = ({
   dance,
   moveDance,
@@ -61,8 +94,16 @@ export const DanceRow = ({
       </td>
       <td title={`ID: ${dance.id}, Follows: ${dance.follows_dance_id}`}>
         <div className="dance">
-          <span>{dance.dance}</span>
-          <span style={{ fontSize: 'small', color: 'gray' }}>{dance.choreography}</span>
+          <div className="dance-and-song" style={{ color: styleColors[dance.dance_style] }}>
+            <div>{dance.dance}</div>
+            <div className="song-and-artist">
+              <span className="song">{dance.song}</span>
+              {dance.artist}
+            </div>
+          </div>
+          <div style={{ fontSize: 'small', color: 'gray' }}>
+            {dance.choreography.replace('Ms. ', '')}
+          </div>
         </div>
       </td>
       <td style={{ fontSize: 'small', textAlign: 'right' }}>{dance.dancer_count}</td>
@@ -115,6 +156,8 @@ export const App = () => {
     setTimeout(() => highlightedIDsDispatch({ type: 'remove', id }), 500);
   };
 
+  const csv = toCsv(data);
+
   return (
     <div className="App">
       <h3>
@@ -123,6 +166,11 @@ export const App = () => {
           <button onClick={() => fetchData()}>⟳</button>
         </span>
       </h3>
+      <a
+        download="recital-order-2025.csv"
+        href={`data:text/plain;charset=utf-8,${encodeURIComponent(csv)}`}>
+        Download Recital Order
+      </a>
       <table>
         <tbody>
           {data.map((dance, idx) => {

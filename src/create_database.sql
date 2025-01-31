@@ -2,6 +2,7 @@ CREATE TABLE dances (
   id int PRIMARY KEY,
   recital_group int check (recital_group IN (1, 2, 3)) null,
   class_time text,
+  dance_style text check (dance_style IN ('Acro', 'Ballet', 'Lyrical/Modern', 'Jazz', 'Musical Theater', 'Tap', 'UNKNOWN')) not null,
   dance text,
   choreography text,
   song text,
@@ -10,8 +11,12 @@ CREATE TABLE dances (
 );
 
 CREATE TABLE dancers (
-  name text PRIMARY KEY
+  name text GENERATED ALWAYS AS (first_name || ' ' || last_name) STORED,
+  first_name text not null,
+  last_name text not null
 );
+
+CREATE UNIQUE INDEX dancers_name ON dancers (name);
 
 CREATE TABLE dance_dancers (
   dance_id int not null,
@@ -27,70 +32,128 @@ CREATE TABLE recital_group_orders (
 CREATE TABLE recitals (
   id text PRIMARY KEY check (id IN ('A', 'B', 'C')),
   recital_group_part_1 int check (recital_group_part_1 IN (1, 2, 3)) null,
-  recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null,
-  baby_dance_ids text
+  recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null
 );
 
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('A', 1, 2, '[30,31,32,33]');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('B', 2, 3, '[34,35,36,37,38,39]');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, baby_dance_ids) VALUES ('C', 3, 1, '[40,41,42,43]');
+--------------------------------------------------------------------------------
+-- Recitals
+--------------------------------------------------------------------------------
 
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('A', 1, 2);
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('B', 2, 3);
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('C', 3, 1);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (1, 1, 'Tuesday 4:15', 'Acro 1', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (2, 1, 'Wednesday 5:15', 'Acro Jr.', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (3, 1, 'Wednesday 7:15', 'Adult Tap 2', 'Ms. Angie', 1);
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (4, 1, 'Tuesday 5:15', 'Ballet 1', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (5, 1, 'Tuesday 6:15', 'Ballet/Contemporary', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (6, 1, 'Wednesday 2:30', 'Ballet/Tap Combo (Wed 2:30) BALLET', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (7, 1, 'Wednesday 2:30', 'Ballet/Tap Combo (Wed 2:30) TAP', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (8, 1, 'Monday 6:15', 'Lyrical/Modern 1', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (9, 1, 'Wednesday 4:15', 'Musical Theater 2', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (10, 1, 'Thursday 5:15', 'Musical Theater 1', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (11, 1, 'Wednesday 6:15', 'Tap 3', 'Ms. Angie', 1);
+--------------------------------------------------------------------------------
+-- Dances
+--------------------------------------------------------------------------------
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (12, 2, 'Tuesday 5:15', 'Acro 2', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (13, 2, 'Tuesday 7:15', 'Adult Ballet/Contemporary', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (14, 2, 'Monday 5:15', 'Ballet 1', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (15, 2, 'Monday 4:15', 'Ballet/Tap Combo (Mon 4:15) BALLET', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (16, 2, 'Monday 4:15', 'Ballet/Tap Combo (Mon 4:15) TAP', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (17, 2, 'Thursday 6:15', 'Jazz 1', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (18, 2, 'Thursday 4:15', 'Lyrical/Modern 1', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (19, 2, 'Wednesday 7:15', 'Musical Theater 3', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (20, 2, 'Wednesday 4:15', 'Tap 1', 'Ms. Angie', 1);
+-- Recital Group 1
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (1, 1, 'Acro', 'You''ll Always Find Your Way Back Home', 'Hannah Montana', 'Tue 4:15', 'Acro 1', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (2, 1, 'Acro', 'Hawaiian Roller Coaster Ride', 'Jump5', 'Wed 5:15', 'Acro Jr.', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (3, 1, 'Tap', 'No Excuses', 'Meghan Trainor', 'Wed 7:15', 'Adult Tap 2', 'Ms. Angie', 1);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (4, 1, 'Ballet', 'Belle of the Ball', 'Leroy Anderson, Simon Tedeschi, Paul Mann', 'Tue 5:15', 'Ballet 1', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (5, 1, 'Ballet', 'Wings', 'Little Mix', 'Tue 6:15', 'Ballet/Contemporary', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (6, 1, 'Ballet', 'Stand By Me', 'Florence + the Machine', 'Wed 2:30', 'Ballet/Tap Combo (Wed 2:30) Ballet', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (7, 1, 'Tap', 'A Wink and a Smile', 'Harry Connick, Jr.', 'Wed 2:30', 'Ballet/Tap Combo (Wed 2:30) Tap', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (8, 1, 'Lyrical/Modern', 'Home', 'Phillip Phillips', 'Mon 6:15', 'Lyrical/Modern 1', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (9, 1, 'Musical Theater', 'Broadway Baby', 'Glee Cast', 'Wed 4:15', 'Musical Theater 2', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (10, 1, 'Musical Theater', 'Come Alive', 'The Greatest Showman', 'Thu 5:15', 'Musical Theater 1', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (11, 1, 'Tap', 'Jet Set', 'Catch Me If You Can -- Aaron Teveit & Company of the Original Broadway Cast 2011', 'Wed 6:15', 'Tap 3', 'Ms. Angie', 1);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (21, 3, 'Wednesday 6:15', 'Acro 3', 'Ms. Emilee');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (22, 3, 'Monday 7:15', 'Adult Tap 1', 'Ms. Angie', 1);
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (23, 3, 'Tuesday 6:15', 'Ballet 2', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (24, 3, 'Tuesday 4:15', 'Combo (Tue 4:15) BALLET', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (25, 3, 'Tuesday 4:15', 'Combo (Tue 4:15) TAP', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (26, 3, 'Monday 6:15', 'Jazz 2', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (27, 3, 'Thursday 5:15', 'Lyrical/Modern 2', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (28, 3, 'Tuesday 7:15', 'Musical Theater: HS', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography, spectapular) VALUES (29, 3, 'Wednesday 5:15', 'Tap 2', 'Ms. Angie', 1);
+-- Recital Group 2
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (12, 2, 'Acro', 'He''s A Pirate', 'Dimitri Vegas & Like Mike', 'Tue 5:15', 'Acro 2', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (13, 2, 'Ballet', 'Rise Up', 'Andra Day', 'Tue 7:15', 'Adult Ballet/Contemporary', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (14, 2, 'Ballet', 'Touch the Sky (Instrumental)', 'Roxane Genot, Jan Prouska', 'Mon 5:15', 'Ballet 1', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (15, 2, 'Ballet', 'Journey to the Past', 'Christy Altomare', 'Mon 4:15', 'Ballet/Tap Combo (Mon 4:15) Ballet', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (16, 2, 'Tap', 'Live Your Story', 'Tina Parol', 'Mon 4:15', 'Ballet/Tap Combo (Mon 4:15) Tap', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (17, 2, 'Jazz', 'Stand Out', 'Tevin Campbell', 'Thu 6:15', 'Jazz 1', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (18, 2, 'Lyrical/Modern', 'How It Ends', 'DeVotchKa', 'Thu 4:15', 'Lyrical/Modern 1', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (19, 2, 'Musical Theater', 'Defying Gravity', 'Wicked: The Soundtrack, Wicked Movie Cast', 'Wed 7:15', 'Musical Theater 3', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (20, 2, 'Tap', 'New York, New York', 'Home State and Yellsmiles/Anna Uzele & Original Broadway Cast 2024', 'Wed 4:15', 'Tap 1', 'Ms. Angie', 1);
 
+-- Recital Group 3
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (21, 3, 'Acro', 'Waka Waka (This Time for Africa)', 'Shakira', 'Wed 6:15', 'Acro 3', 'Ms. Emilee', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (22, 3, 'Tap', 'The Feeling', 'Sammy Rae & Friends', 'Mon 7:15', 'Adult Tap 1', 'Ms. Angie', 1);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (23, 3, 'Ballet', 'Sleeping Beauty Waltz', 'Tchaikovsky, London Symphony Orchestra', 'Tue 6:15', 'Ballet 2', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (24, 3, 'Ballet', 'Dream', 'Priscilla Ahn', 'Tue 4:15', 'Ballet/Tap Combo (Tue 4:15) Ballet', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (25, 3, 'Tap', 'Ease On Down the Road', 'Matthew Morrison', 'Tue 4:15', 'Ballet/Tap Combo (Tue 4:15) Tap', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (26, 3, 'Jazz', 'Spaceman', 'Head Up High', 'Mon 6:15', 'Jazz 2', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (27, 3, 'Lyrical/Modern', 'You Will Be Found', 'Dear Evan Hansen Original Motion Picture Soundtrack', 'Thu 5:15', 'Lyrical/Modern 2', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (28, 3, 'Musical Theater', 'Another Day of Sun', 'La La Land Cast', 'Tue 7:15', 'Musical Theater: HS', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (29, 3, 'Tap', 'Welcome to New York (Taylor''s Version)', 'Taylor Swift', 'Wed 5:15', 'Tap 2', 'Ms. Angie', 1);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (30, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (31, NULL, 'Thursday 4:15', 'Pre-Ballet/Tap (Thu 4:15) Daddy/Daughter', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (32, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (33, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa');
+-- Recital A Baby Dances
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (30, NULL, 'UNKNOWN', 'Butterfly Fly Away', 'Miley and Billy Ray Cyrus', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15) Daddy/Daughter', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (31, NULL, 'UNKNOWN', 'When Will My Life Begin', 'Mandy Moore', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (32, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (33, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (34, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (35, NULL, 'Wednesday 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy/Daughter', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (36, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (37, NULL, 'Thursday 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy/Daughter', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (38, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (39, NULL, 'Wednesday 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy/Daughter', 'Ms. Jillian');
+-- Recital B Baby Dances
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (34, NULL, 'UNKNOWN', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (35, NULL, 'UNKNOWN', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy/Daughter', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (36, NULL, 'UNKNOWN', 'Mon Coeur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (37, NULL, 'UNKNOWN', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy/Daughter', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (38, NULL, 'UNKNOWN', 'Singin'' in the Rain', 'JJ Heller', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (39, NULL, 'UNKNOWN', 'Lollipop', 'Sophie Green', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy/Daughter', 'Ms. Jillian', 0);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (40, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (41, NULL, 'Wednesday 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Jillian');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (42, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00)', 'Ms. Marissa');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (43, NULL, 'Thursday 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy/Daughter', 'Ms. Marissa');
+-- Recital C Baby Dances
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (40, NULL, 'UNKNOWN', 'la la lu', 'Christina Perri', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (41, NULL, 'UNKNOWN', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (42, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Thu 11:00', 'Pre-Ballet/Tap (Thu 11:00)', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Thu 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
 
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (44, NULL, NULL, 'SpecTAPular A', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (45, NULL, NULL, 'SpecTAPular B', 'Ms. Angie');
-INSERT INTO dances (id, recital_group, class_time, dance, choreography) VALUES (46, NULL, NULL, 'SpecTAPular C', 'Ms. Angie');
+-- SpecTAPular
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (-1, NULL, 'Tap', 'Song-A-Long', 'Cast of Eurovision Song Contest: The Story of Fire Saga', NULL, 'SpecTAPular', 'Ms. Angie', 0);
 
+--------------------------------------------------------------------------------
+-- Dance Orders
+--------------------------------------------------------------------------------
 
+-- Recital Group 1 Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 3, NULL);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 2, 3);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 1, 2);
@@ -103,6 +166,7 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 10, 9);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 11, 10);
 
+-- Recital Group 2 Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 14, NULL);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 13, 14);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 12, 13);
@@ -113,6 +177,7 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 19, 18);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 20, 19);
 
+-- Recital Group 3 Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 23, NULL);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 22, 23);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 21, 22);
@@ -123,11 +188,13 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 28, 27);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 29, 28);
 
+-- Recital A Baby Dance Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 4);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 8);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 12);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 16);
 
+-- Recital B Baby Dance Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 14);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 18);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 36, 22);
@@ -135,283 +202,296 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 38, 24);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 39, 28);
 
+-- Recital C Baby Dance Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 40, 24);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 41, 28);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 42, 4);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 43, 8);
 
+--------------------------------------------------------------------------------
+-- Dancers
+--------------------------------------------------------------------------------
 
-INSERT INTO dancers (name) VALUES ('Abbey Foley');
-INSERT INTO dancers (name) VALUES ('Abigail Clark');
-INSERT INTO dancers (name) VALUES ('Adalynn Malcolm');
-INSERT INTO dancers (name) VALUES ('Addie Knisley');
-INSERT INTO dancers (name) VALUES ('Addie Vetter');
-INSERT INTO dancers (name) VALUES ('Addilyn Bichsel');
-INSERT INTO dancers (name) VALUES ('Addison Mattingly');
-INSERT INTO dancers (name) VALUES ('Addison Meng');
-INSERT INTO dancers (name) VALUES ('Addison Mills');
-INSERT INTO dancers (name) VALUES ('Akshara Madana');
-INSERT INTO dancers (name) VALUES ('Alaina Akert');
-INSERT INTO dancers (name) VALUES ('Alex Sims');
-INSERT INTO dancers (name) VALUES ('Alex Vetter');
-INSERT INTO dancers (name) VALUES ('Alexandra Stonham');
-INSERT INTO dancers (name) VALUES ('Ali Arce');
-INSERT INTO dancers (name) VALUES ('Ali Nava');
-INSERT INTO dancers (name) VALUES ('Alice Stonham');
-INSERT INTO dancers (name) VALUES ('Alita Van Poppelen');
-INSERT INTO dancers (name) VALUES ('Amanda Meyerhofer');
-INSERT INTO dancers (name) VALUES ('Amelia Clark');
-INSERT INTO dancers (name) VALUES ('Amelia Coates');
-INSERT INTO dancers (name) VALUES ('Amelia Haro');
-INSERT INTO dancers (name) VALUES ('Amelia Hurtado');
-INSERT INTO dancers (name) VALUES ('Amelia Ratkovich');
-INSERT INTO dancers (name) VALUES ('Ami Meng');
-INSERT INTO dancers (name) VALUES ('Amy Burnham');
-INSERT INTO dancers (name) VALUES ('Amy Schroff');
-INSERT INTO dancers (name) VALUES ('Angelica Catuna');
-INSERT INTO dancers (name) VALUES ('Angie Boone');
-INSERT INTO dancers (name) VALUES ('Anneliese Wells');
-INSERT INTO dancers (name) VALUES ('Annie Cox');
-INSERT INTO dancers (name) VALUES ('Anysia Chandiramani');
-INSERT INTO dancers (name) VALUES ('Aria Musarra');
-INSERT INTO dancers (name) VALUES ('Ariah Baxter');
-INSERT INTO dancers (name) VALUES ('Arianna Reddy Kambham');
-INSERT INTO dancers (name) VALUES ('Ariella Burdette');
-INSERT INTO dancers (name) VALUES ('Asher Boone');
-INSERT INTO dancers (name) VALUES ('Aubree Laavazo');
-INSERT INTO dancers (name) VALUES ('Audree Addler');
-INSERT INTO dancers (name) VALUES ('Audrey Bland');
-INSERT INTO dancers (name) VALUES ('Ava Bervig');
-INSERT INTO dancers (name) VALUES ('Ava Elgin');
-INSERT INTO dancers (name) VALUES ('Ava Wolter');
-INSERT INTO dancers (name) VALUES ('Avery Kidd');
-INSERT INTO dancers (name) VALUES ('Avyakta Shloka Balla');
-INSERT INTO dancers (name) VALUES ('Bailey Meyer');
-INSERT INTO dancers (name) VALUES ('Beckham Kidd');
-INSERT INTO dancers (name) VALUES ('Blakely Moreno');
-INSERT INTO dancers (name) VALUES ('Briddian Demas');
-INSERT INTO dancers (name) VALUES ('Brielle Farcas');
-INSERT INTO dancers (name) VALUES ('Brooke Balzarini');
-INSERT INTO dancers (name) VALUES ('Brooklyn Miller');
-INSERT INTO dancers (name) VALUES ('Brooksie Schuitema');
-INSERT INTO dancers (name) VALUES ('Brynlie Murphy');
-INSERT INTO dancers (name) VALUES ('Caitlin O''Connor');
-INSERT INTO dancers (name) VALUES ('Calista Linger');
-INSERT INTO dancers (name) VALUES ('Callie Hayslett');
-INSERT INTO dancers (name) VALUES ('Carson Hunter');
-INSERT INTO dancers (name) VALUES ('Charis Morkunas');
-INSERT INTO dancers (name) VALUES ('Charley Moncrieff');
-INSERT INTO dancers (name) VALUES ('Charlie Hansen');
-INSERT INTO dancers (name) VALUES ('Charlotte Ardelean');
-INSERT INTO dancers (name) VALUES ('Charlotte Delatorre');
-INSERT INTO dancers (name) VALUES ('Charlotte Hughes');
-INSERT INTO dancers (name) VALUES ('Charlotte Reaney');
-INSERT INTO dancers (name) VALUES ('Chloe Hale-Banks');
-INSERT INTO dancers (name) VALUES ('Chloe Minani');
-INSERT INTO dancers (name) VALUES ('Christina Callanan-Attebery');
-INSERT INTO dancers (name) VALUES ('Claira Kundla');
-INSERT INTO dancers (name) VALUES ('Clara Boone');
-INSERT INTO dancers (name) VALUES ('Cora Bervig');
-INSERT INTO dancers (name) VALUES ('Dawn Ellis');
-INSERT INTO dancers (name) VALUES ('Delaney Hernaez');
-INSERT INTO dancers (name) VALUES ('Delaney Ogden');
-INSERT INTO dancers (name) VALUES ('Eden Rawlings');
-INSERT INTO dancers (name) VALUES ('Eden Rosinbum');
-INSERT INTO dancers (name) VALUES ('Eleanor Mann');
-INSERT INTO dancers (name) VALUES ('Eliana Macrides');
-INSERT INTO dancers (name) VALUES ('Elissa Uhl');
-INSERT INTO dancers (name) VALUES ('Ella Martin');
-INSERT INTO dancers (name) VALUES ('Ella Stan');
-INSERT INTO dancers (name) VALUES ('Elli Moore');
-INSERT INTO dancers (name) VALUES ('Elli Wetmore');
-INSERT INTO dancers (name) VALUES ('Ellie Coffee');
-INSERT INTO dancers (name) VALUES ('Ellie Garibaldi');
-INSERT INTO dancers (name) VALUES ('Eloise Arena');
-INSERT INTO dancers (name) VALUES ('Elora Tacheny');
-INSERT INTO dancers (name) VALUES ('Elyssa Weidman');
-INSERT INTO dancers (name) VALUES ('Emery Kinch');
-INSERT INTO dancers (name) VALUES ('Emilia Erickson');
-INSERT INTO dancers (name) VALUES ('Emilee Machowski');
-INSERT INTO dancers (name) VALUES ('Emily Brunk');
-INSERT INTO dancers (name) VALUES ('Emily Lewis');
-INSERT INTO dancers (name) VALUES ('Emily Ritter');
-INSERT INTO dancers (name) VALUES ('Emma Elgin');
-INSERT INTO dancers (name) VALUES ('Emma Hoelzen');
-INSERT INTO dancers (name) VALUES ('Emma Vilorio');
-INSERT INTO dancers (name) VALUES ('Emmaline Ashton');
-INSERT INTO dancers (name) VALUES ('Emmanuelle Carnahan');
-INSERT INTO dancers (name) VALUES ('Eric Lynch');
-INSERT INTO dancers (name) VALUES ('Eve Laun');
-INSERT INTO dancers (name) VALUES ('Everly Mauldin');
-INSERT INTO dancers (name) VALUES ('Evie Carioto');
-INSERT INTO dancers (name) VALUES ('Finnley Vossler');
-INSERT INTO dancers (name) VALUES ('Gabriela Ortiz');
-INSERT INTO dancers (name) VALUES ('Gia McBride');
-INSERT INTO dancers (name) VALUES ('Gianna Arce');
-INSERT INTO dancers (name) VALUES ('Gina Sorrentino');
-INSERT INTO dancers (name) VALUES ('Grace Hayslett');
-INSERT INTO dancers (name) VALUES ('Grace Miller');
-INSERT INTO dancers (name) VALUES ('Grace Molina');
-INSERT INTO dancers (name) VALUES ('Grace Rawlings');
-INSERT INTO dancers (name) VALUES ('Gracen Kantaras');
-INSERT INTO dancers (name) VALUES ('Hadley Mae Lichter');
-INSERT INTO dancers (name) VALUES ('Hadley Taylor');
-INSERT INTO dancers (name) VALUES ('Hailey Ratiu');
-INSERT INTO dancers (name) VALUES ('Hallie Riewold');
-INSERT INTO dancers (name) VALUES ('Hanna Abney');
-INSERT INTO dancers (name) VALUES ('Hanna Tsai');
-INSERT INTO dancers (name) VALUES ('Hannah DeSpain');
-INSERT INTO dancers (name) VALUES ('Hannah Ratiu');
-INSERT INTO dancers (name) VALUES ('Harper Addler');
-INSERT INTO dancers (name) VALUES ('Hayden Bragg');
-INSERT INTO dancers (name) VALUES ('Heidi Moore');
-INSERT INTO dancers (name) VALUES ('Holly Sheppard');
-INSERT INTO dancers (name) VALUES ('Hollyn Kinch');
-INSERT INTO dancers (name) VALUES ('Isa Segura');
-INSERT INTO dancers (name) VALUES ('Isabella Ma');
-INSERT INTO dancers (name) VALUES ('Isabelle Stonham');
-INSERT INTO dancers (name) VALUES ('Ishika Musani');
-INSERT INTO dancers (name) VALUES ('Isla Abuhmaiden');
-INSERT INTO dancers (name) VALUES ('Isla Bervig');
-INSERT INTO dancers (name) VALUES ('Ivan Shkarayev');
-INSERT INTO dancers (name) VALUES ('Ivy Aleo');
-INSERT INTO dancers (name) VALUES ('Jacqueline Humbles');
-INSERT INTO dancers (name) VALUES ('Jade Franks');
-INSERT INTO dancers (name) VALUES ('Jake Boone');
-INSERT INTO dancers (name) VALUES ('Jamieson Migliorino');
-INSERT INTO dancers (name) VALUES ('Jane Armenta');
-INSERT INTO dancers (name) VALUES ('Jane Fuss');
-INSERT INTO dancers (name) VALUES ('Jane Hicks');
-INSERT INTO dancers (name) VALUES ('Janelle Stayton');
-INSERT INTO dancers (name) VALUES ('Jenna Meyerhofer');
-INSERT INTO dancers (name) VALUES ('Jessica Scorzetti');
-INSERT INTO dancers (name) VALUES ('Jillian Hester');
-INSERT INTO dancers (name) VALUES ('Jillian Stefanski');
-INSERT INTO dancers (name) VALUES ('Jodi DeLaTorre');
-INSERT INTO dancers (name) VALUES ('Joelle Murphy');
-INSERT INTO dancers (name) VALUES ('Jonah Wells');
-INSERT INTO dancers (name) VALUES ('Josslyn Hester');
-INSERT INTO dancers (name) VALUES ('Juliana Conner');
-INSERT INTO dancers (name) VALUES ('Julie Burnham');
-INSERT INTO dancers (name) VALUES ('Juliette Boone');
-INSERT INTO dancers (name) VALUES ('Juliette Ogden');
-INSERT INTO dancers (name) VALUES ('Justine Persons');
-INSERT INTO dancers (name) VALUES ('Kaleen Wo');
-INSERT INTO dancers (name) VALUES ('Kalina Korito');
-INSERT INTO dancers (name) VALUES ('Kate Hoelzen');
-INSERT INTO dancers (name) VALUES ('Kate Mather');
-INSERT INTO dancers (name) VALUES ('Kate Widney');
-INSERT INTO dancers (name) VALUES ('Kekoalakakapono Morkunas');
-INSERT INTO dancers (name) VALUES ('Kelsey Puckett');
-INSERT INTO dancers (name) VALUES ('Kendall Rudzki');
-INSERT INTO dancers (name) VALUES ('Kenley Block');
-INSERT INTO dancers (name) VALUES ('Keshavi Patel');
-INSERT INTO dancers (name) VALUES ('Keturah Lynch');
-INSERT INTO dancers (name) VALUES ('Kinney Chen');
-INSERT INTO dancers (name) VALUES ('Kira Shkarayeva');
-INSERT INTO dancers (name) VALUES ('Kristi Hunter');
-INSERT INTO dancers (name) VALUES ('Kylie Davis');
-INSERT INTO dancers (name) VALUES ('Kylie Gonzales');
-INSERT INTO dancers (name) VALUES ('Larsyn Callanan-Attebery');
-INSERT INTO dancers (name) VALUES ('Leelah Taylor');
-INSERT INTO dancers (name) VALUES ('Lennon Taylor');
-INSERT INTO dancers (name) VALUES ('Lilah Norris');
-INSERT INTO dancers (name) VALUES ('Lilli Rosinbum');
-INSERT INTO dancers (name) VALUES ('Lillian Denney');
-INSERT INTO dancers (name) VALUES ('Lindsay Davis');
-INSERT INTO dancers (name) VALUES ('Lizzy Bala Bala');
-INSERT INTO dancers (name) VALUES ('Lo Holloway');
-INSERT INTO dancers (name) VALUES ('Luci Arce');
-INSERT INTO dancers (name) VALUES ('Lucy Albert');
-INSERT INTO dancers (name) VALUES ('Lucy Goodson');
-INSERT INTO dancers (name) VALUES ('Mackenzie Flandrau');
-INSERT INTO dancers (name) VALUES ('Maddie Massaro');
-INSERT INTO dancers (name) VALUES ('Madeline Nguyen');
-INSERT INTO dancers (name) VALUES ('Madeline O''Connor');
-INSERT INTO dancers (name) VALUES ('Madi Akert');
-INSERT INTO dancers (name) VALUES ('Madison Puckett');
-INSERT INTO dancers (name) VALUES ('Madison Schroff');
-INSERT INTO dancers (name) VALUES ('Madison Widney');
-INSERT INTO dancers (name) VALUES ('Mae Simmers');
-INSERT INTO dancers (name) VALUES ('Maezlyn Wiese');
-INSERT INTO dancers (name) VALUES ('Maia Hunter');
-INSERT INTO dancers (name) VALUES ('Maisie Cantieni');
-INSERT INTO dancers (name) VALUES ('Makena Kirara');
-INSERT INTO dancers (name) VALUES ('Makenna Reeves');
-INSERT INTO dancers (name) VALUES ('Maleah Poku');
-INSERT INTO dancers (name) VALUES ('Manya Thakur');
-INSERT INTO dancers (name) VALUES ('Margot Denney');
-INSERT INTO dancers (name) VALUES ('Marien de la Torre');
-INSERT INTO dancers (name) VALUES ('Marina Permiakova');
-INSERT INTO dancers (name) VALUES ('Marissa Calderone');
-INSERT INTO dancers (name) VALUES ('Marlowe Drown');
-INSERT INTO dancers (name) VALUES ('Mavis Henry');
-INSERT INTO dancers (name) VALUES ('Megan Henze');
-INSERT INTO dancers (name) VALUES ('Megan Riewold');
-INSERT INTO dancers (name) VALUES ('Mia Segura');
-INSERT INTO dancers (name) VALUES ('Mikaela Wells');
-INSERT INTO dancers (name) VALUES ('Mixon Jakubos');
-INSERT INTO dancers (name) VALUES ('Moustafa Banna');
-INSERT INTO dancers (name) VALUES ('Natallya Shkarayeva');
-INSERT INTO dancers (name) VALUES ('Nisha Bhatia');
-INSERT INTO dancers (name) VALUES ('Noelle Gunnell');
-INSERT INTO dancers (name) VALUES ('Noemi Richardson');
-INSERT INTO dancers (name) VALUES ('Nora Ardelean');
-INSERT INTO dancers (name) VALUES ('Olivia Bervig');
-INSERT INTO dancers (name) VALUES ('Olivia Flandrau');
-INSERT INTO dancers (name) VALUES ('Olivia Lenhart');
-INSERT INTO dancers (name) VALUES ('Parker Lemanski');
-INSERT INTO dancers (name) VALUES ('Pearl Nielsen');
-INSERT INTO dancers (name) VALUES ('Penelope Hicks');
-INSERT INTO dancers (name) VALUES ('Peyton Grayson');
-INSERT INTO dancers (name) VALUES ('Phoenix-Dawn Morkunas');
-INSERT INTO dancers (name) VALUES ('Piper McGuire');
-INSERT INTO dancers (name) VALUES ('Presleigh Wilson');
-INSERT INTO dancers (name) VALUES ('Presley Grubor');
-INSERT INTO dancers (name) VALUES ('Quinn Dollman');
-INSERT INTO dancers (name) VALUES ('Quinn Fo');
-INSERT INTO dancers (name) VALUES ('ReAnn Loose');
-INSERT INTO dancers (name) VALUES ('Rebecca Arnold');
-INSERT INTO dancers (name) VALUES ('Rebekah Poku');
-INSERT INTO dancers (name) VALUES ('Reese Goodman');
-INSERT INTO dancers (name) VALUES ('Riley Ratkovich');
-INSERT INTO dancers (name) VALUES ('Rory Krueger');
-INSERT INTO dancers (name) VALUES ('Ruby Rasch');
-INSERT INTO dancers (name) VALUES ('Ryann Bragg');
-INSERT INTO dancers (name) VALUES ('Rylee Eklund');
-INSERT INTO dancers (name) VALUES ('Ryleigh Gower');
-INSERT INTO dancers (name) VALUES ('Rylie Brown');
-INSERT INTO dancers (name) VALUES ('Rylie Persons');
-INSERT INTO dancers (name) VALUES ('Sadie Mather');
-INSERT INTO dancers (name) VALUES ('Sadie McCrite');
-INSERT INTO dancers (name) VALUES ('Saisha Sethi');
-INSERT INTO dancers (name) VALUES ('Sedona Flumbaugh');
-INSERT INTO dancers (name) VALUES ('Shay Patterson');
-INSERT INTO dancers (name) VALUES ('Shelby Bow');
-INSERT INTO dancers (name) VALUES ('Shweta (Ryna) Arora');
-INSERT INTO dancers (name) VALUES ('Sierra Bohannan');
-INSERT INTO dancers (name) VALUES ('Skylar Lizama');
-INSERT INTO dancers (name) VALUES ('Sofia Nava');
-INSERT INTO dancers (name) VALUES ('Sofia Shearer');
-INSERT INTO dancers (name) VALUES ('Sophia Andersen');
-INSERT INTO dancers (name) VALUES ('Sophia Ortega');
-INSERT INTO dancers (name) VALUES ('Sophie Aja');
-INSERT INTO dancers (name) VALUES ('Sophie Catuna');
-INSERT INTO dancers (name) VALUES ('Stephanie Hansen');
-INSERT INTO dancers (name) VALUES ('Summer Lynch');
-INSERT INTO dancers (name) VALUES ('Teagan Turley');
-INSERT INTO dancers (name) VALUES ('Teanna Brawley');
-INSERT INTO dancers (name) VALUES ('Tessa Block');
-INSERT INTO dancers (name) VALUES ('Tosha Focht');
-INSERT INTO dancers (name) VALUES ('Violet Aleo');
-INSERT INTO dancers (name) VALUES ('Vivian Rawlings');
-INSERT INTO dancers (name) VALUES ('Wae Callanan-Attebery');
-INSERT INTO dancers (name) VALUES ('Winnie Ady');
-INSERT INTO dancers (name) VALUES ('Zari Nicely');
-INSERT INTO dancers (name) VALUES ('Zoe Griffin');
-INSERT INTO dancers (name) VALUES ('Zoey Moore');
-INSERT INTO dancers (name) VALUES ('Zyah Chandiramani');
+INSERT INTO dancers (first_name, last_name) VALUES ('Abbey', 'Foley');
+INSERT INTO dancers (first_name, last_name) VALUES ('Abigail', 'Clark');
+INSERT INTO dancers (first_name, last_name) VALUES ('Adalynn', 'Malcolm');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addie', 'Knisley');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addie', 'Vetter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addilyn', 'Bichsel');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addison', 'Mattingly');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addison', 'Meng');
+INSERT INTO dancers (first_name, last_name) VALUES ('Addison', 'Mills');
+INSERT INTO dancers (first_name, last_name) VALUES ('Akshara', 'Madana');
+INSERT INTO dancers (first_name, last_name) VALUES ('Alaina', 'Akert');
+INSERT INTO dancers (first_name, last_name) VALUES ('Alex', 'Sims');
+INSERT INTO dancers (first_name, last_name) VALUES ('Alex', 'Vetter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Alexandra', 'Stonham');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ali', 'Arce');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ali', 'Nava');
+INSERT INTO dancers (first_name, last_name) VALUES ('Alice', 'Stonham');
+-- Middle name or two-part last name?
+INSERT INTO dancers (first_name, last_name) VALUES ('Alita', 'Van Poppelen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amanda', 'Meyerhofer');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amelia', 'Clark');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amelia', 'Coates');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amelia', 'Haro');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amelia', 'Hurtado');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amelia', 'Ratkovich');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ami', 'Meng');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amy', 'Burnham');
+INSERT INTO dancers (first_name, last_name) VALUES ('Amy', 'Schroff');
+INSERT INTO dancers (first_name, last_name) VALUES ('Angelica', 'Catuna');
+INSERT INTO dancers (first_name, last_name) VALUES ('Angie', 'Boone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Anneliese', 'Wells');
+INSERT INTO dancers (first_name, last_name) VALUES ('Annie', 'Cox');
+INSERT INTO dancers (first_name, last_name) VALUES ('Anysia', 'Chandiramani');
+INSERT INTO dancers (first_name, last_name) VALUES ('Aria', 'Musarra');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ariah', 'Baxter');
+-- Middle name or two-part last name?
+INSERT INTO dancers (first_name, last_name) VALUES ('Arianna Reddy', 'Kambham');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ariella', 'Burdette');
+INSERT INTO dancers (first_name, last_name) VALUES ('Asher', 'Boone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Aubree', 'Laavazo');
+INSERT INTO dancers (first_name, last_name) VALUES ('Audree', 'Addler');
+INSERT INTO dancers (first_name, last_name) VALUES ('Audrey', 'Bland');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ava', 'Bervig');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ava', 'Elgin');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ava', 'Wolter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Avery', 'Kidd');
+-- Middle name or two-part last name?
+INSERT INTO dancers (first_name, last_name) VALUES ('Avyakta Shloka', 'Balla');
+INSERT INTO dancers (first_name, last_name) VALUES ('Bailey', 'Meyer');
+INSERT INTO dancers (first_name, last_name) VALUES ('Beckham', 'Kidd');
+INSERT INTO dancers (first_name, last_name) VALUES ('Blakely', 'Moreno');
+INSERT INTO dancers (first_name, last_name) VALUES ('Briddian', 'Demas');
+INSERT INTO dancers (first_name, last_name) VALUES ('Brielle', 'Farcas');
+INSERT INTO dancers (first_name, last_name) VALUES ('Brooke', 'Balzarini');
+INSERT INTO dancers (first_name, last_name) VALUES ('Brooklyn', 'Miller');
+INSERT INTO dancers (first_name, last_name) VALUES ('Brooksie', 'Schuitema');
+INSERT INTO dancers (first_name, last_name) VALUES ('Brynlie', 'Murphy');
+INSERT INTO dancers (first_name, last_name) VALUES ('Caitlin', 'O''Connor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Calista', 'Linger');
+INSERT INTO dancers (first_name, last_name) VALUES ('Callie', 'Hayslett');
+INSERT INTO dancers (first_name, last_name) VALUES ('Carson', 'Hunter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charis', 'Morkunas');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charley', 'Moncrieff');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charlie', 'Hansen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charlotte', 'Ardelean');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charlotte', 'Delatorre');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charlotte', 'Hughes');
+INSERT INTO dancers (first_name, last_name) VALUES ('Charlotte', 'Reaney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Chloe', 'Hale-Banks');
+INSERT INTO dancers (first_name, last_name) VALUES ('Chloe', 'Minani');
+INSERT INTO dancers (first_name, last_name) VALUES ('Christina', 'Callanan-Attebery');
+INSERT INTO dancers (first_name, last_name) VALUES ('Claira', 'Kundla');
+INSERT INTO dancers (first_name, last_name) VALUES ('Clara', 'Boone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Cora', 'Bervig');
+INSERT INTO dancers (first_name, last_name) VALUES ('Dawn', 'Ellis');
+INSERT INTO dancers (first_name, last_name) VALUES ('Delaney', 'Hernaez');
+INSERT INTO dancers (first_name, last_name) VALUES ('Delaney', 'Ogden');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eden', 'Rawlings');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eden', 'Rosinbum');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eleanor', 'Mann');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eliana', 'Macrides');
+INSERT INTO dancers (first_name, last_name) VALUES ('Elissa', 'Uhl');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ella', 'Martin');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ella', 'Stan');
+INSERT INTO dancers (first_name, last_name) VALUES ('Elli', 'Moore');
+INSERT INTO dancers (first_name, last_name) VALUES ('Elli', 'Wetmore');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ellie', 'Coffee');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ellie', 'Garibaldi');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eloise', 'Arena');
+INSERT INTO dancers (first_name, last_name) VALUES ('Elora', 'Tacheny');
+INSERT INTO dancers (first_name, last_name) VALUES ('Elyssa', 'Weidman');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emery', 'Kinch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emilia', 'Erickson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emilee', 'Machowski');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emily', 'Brunk');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emily', 'Lewis');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emily', 'Ritter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emma', 'Elgin');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emma', 'Hoelzen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emma', 'Vilorio');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emmaline', 'Ashton');
+INSERT INTO dancers (first_name, last_name) VALUES ('Emmanuelle', 'Carnahan');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eric', 'Lynch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Eve', 'Laun');
+INSERT INTO dancers (first_name, last_name) VALUES ('Everly', 'Mauldin');
+INSERT INTO dancers (first_name, last_name) VALUES ('Evie', 'Carioto');
+INSERT INTO dancers (first_name, last_name) VALUES ('Finnley', 'Vossler');
+INSERT INTO dancers (first_name, last_name) VALUES ('Gabriela', 'Ortiz');
+INSERT INTO dancers (first_name, last_name) VALUES ('Gia', 'McBride');
+INSERT INTO dancers (first_name, last_name) VALUES ('Gianna', 'Arce');
+INSERT INTO dancers (first_name, last_name) VALUES ('Gina', 'Sorrentino');
+INSERT INTO dancers (first_name, last_name) VALUES ('Grace', 'Hayslett');
+INSERT INTO dancers (first_name, last_name) VALUES ('Grace', 'Miller');
+INSERT INTO dancers (first_name, last_name) VALUES ('Grace', 'Molina');
+INSERT INTO dancers (first_name, last_name) VALUES ('Grace', 'Rawlings');
+INSERT INTO dancers (first_name, last_name) VALUES ('Gracen', 'Kantaras');
+-- Middle name or two-part last name?
+INSERT INTO dancers (first_name, last_name) VALUES ('Hadley Mae', 'Lichter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hadley', 'Taylor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hailey', 'Ratiu');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hallie', 'Riewold');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hanna', 'Abney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hanna', 'Tsai');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hannah', 'DeSpain');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hannah', 'Ratiu');
+INSERT INTO dancers (first_name, last_name) VALUES ('Harper', 'Addler');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hayden', 'Bragg');
+INSERT INTO dancers (first_name, last_name) VALUES ('Heidi', 'Moore');
+INSERT INTO dancers (first_name, last_name) VALUES ('Holly', 'Sheppard');
+INSERT INTO dancers (first_name, last_name) VALUES ('Hollyn', 'Kinch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Isa', 'Segura');
+INSERT INTO dancers (first_name, last_name) VALUES ('Isabella', 'Ma');
+INSERT INTO dancers (first_name, last_name) VALUES ('Isabelle', 'Stonham');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ishika', 'Musani');
+INSERT INTO dancers (first_name, last_name) VALUES ('Isla', 'Abuhmaiden');
+INSERT INTO dancers (first_name, last_name) VALUES ('Isla', 'Bervig');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ivan', 'Shkarayev');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ivy', 'Aleo');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jacqueline', 'Humbles');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jade', 'Franks');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jake', 'Boone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jamieson', 'Migliorino');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jane', 'Armenta');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jane', 'Fuss');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jane', 'Hicks');
+INSERT INTO dancers (first_name, last_name) VALUES ('Janelle', 'Stayton');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jenna', 'Meyerhofer');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jessica', 'Scorzetti');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jillian', 'Hester');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jillian', 'Stefanski');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jodi', 'DeLaTorre');
+INSERT INTO dancers (first_name, last_name) VALUES ('Joelle', 'Murphy');
+INSERT INTO dancers (first_name, last_name) VALUES ('Jonah', 'Wells');
+INSERT INTO dancers (first_name, last_name) VALUES ('Josslyn', 'Hester');
+INSERT INTO dancers (first_name, last_name) VALUES ('Juliana', 'Conner');
+INSERT INTO dancers (first_name, last_name) VALUES ('Julie', 'Burnham');
+INSERT INTO dancers (first_name, last_name) VALUES ('Juliette', 'Boone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Juliette', 'Ogden');
+INSERT INTO dancers (first_name, last_name) VALUES ('Justine', 'Persons');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kaleen', 'Wo');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kalina', 'Korito');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kate', 'Hoelzen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kate', 'Mather');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kate', 'Widney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kekoalakakapono', 'Morkunas');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kelsey', 'Puckett');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kendall', 'Rudzki');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kenley', 'Block');
+INSERT INTO dancers (first_name, last_name) VALUES ('Keshavi', 'Patel');
+INSERT INTO dancers (first_name, last_name) VALUES ('Keturah', 'Lynch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kinney', 'Chen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kira', 'Shkarayeva');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kristi', 'Hunter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kylie', 'Davis');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kylie', 'Gonzales');
+INSERT INTO dancers (first_name, last_name) VALUES ('Larsyn', 'Callanan-Attebery');
+INSERT INTO dancers (first_name, last_name) VALUES ('Leelah', 'Taylor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lennon', 'Taylor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lilah', 'Norris');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lilli', 'Rosinbum');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lillian', 'Denney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lindsay', 'Davis');
+-- Middle name or two-part last name?
+INSERT INTO dancers (first_name, last_name) VALUES ('Lizzy', 'Bala Bala');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lo', 'Holloway');
+INSERT INTO dancers (first_name, last_name) VALUES ('Luci', 'Arce');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lucy', 'Albert');
+INSERT INTO dancers (first_name, last_name) VALUES ('Lucy', 'Goodson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mackenzie', 'Flandrau');
+INSERT INTO dancers (first_name, last_name) VALUES ('Maddie', 'Massaro');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madeline', 'Nguyen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madeline', 'O''Connor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madi', 'Akert');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madison', 'Puckett');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madison', 'Schroff');
+INSERT INTO dancers (first_name, last_name) VALUES ('Madison', 'Widney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mae', 'Simmers');
+INSERT INTO dancers (first_name, last_name) VALUES ('Maezlyn', 'Wiese');
+INSERT INTO dancers (first_name, last_name) VALUES ('Maia', 'Hunter');
+INSERT INTO dancers (first_name, last_name) VALUES ('Maisie', 'Cantieni');
+INSERT INTO dancers (first_name, last_name) VALUES ('Makena', 'Kirara');
+INSERT INTO dancers (first_name, last_name) VALUES ('Makenna', 'Reeves');
+INSERT INTO dancers (first_name, last_name) VALUES ('Maleah', 'Poku');
+INSERT INTO dancers (first_name, last_name) VALUES ('Manya', 'Thakur');
+INSERT INTO dancers (first_name, last_name) VALUES ('Margot', 'Denney');
+INSERT INTO dancers (first_name, last_name) VALUES ('Marien', 'de la Torre');
+INSERT INTO dancers (first_name, last_name) VALUES ('Marina', 'Permiakova');
+INSERT INTO dancers (first_name, last_name) VALUES ('Marissa', 'Calderone');
+INSERT INTO dancers (first_name, last_name) VALUES ('Marlowe', 'Drown');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mavis', 'Henry');
+INSERT INTO dancers (first_name, last_name) VALUES ('Megan', 'Henze');
+INSERT INTO dancers (first_name, last_name) VALUES ('Megan', 'Riewold');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mia', 'Segura');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mikaela', 'Wells');
+INSERT INTO dancers (first_name, last_name) VALUES ('Mixon', 'Jakubos');
+INSERT INTO dancers (first_name, last_name) VALUES ('Moustafa', 'Banna');
+INSERT INTO dancers (first_name, last_name) VALUES ('Natallya', 'Shkarayeva');
+INSERT INTO dancers (first_name, last_name) VALUES ('Nisha', 'Bhatia');
+INSERT INTO dancers (first_name, last_name) VALUES ('Noelle', 'Gunnell');
+INSERT INTO dancers (first_name, last_name) VALUES ('Noemi', 'Richardson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Nora', 'Ardelean');
+INSERT INTO dancers (first_name, last_name) VALUES ('Olivia', 'Bervig');
+INSERT INTO dancers (first_name, last_name) VALUES ('Olivia', 'Flandrau');
+INSERT INTO dancers (first_name, last_name) VALUES ('Olivia', 'Lenhart');
+INSERT INTO dancers (first_name, last_name) VALUES ('Parker', 'Lemanski');
+INSERT INTO dancers (first_name, last_name) VALUES ('Pearl', 'Nielsen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Penelope', 'Hicks');
+INSERT INTO dancers (first_name, last_name) VALUES ('Peyton', 'Grayson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Phoenix-Dawn', 'Morkunas');
+INSERT INTO dancers (first_name, last_name) VALUES ('Piper', 'McGuire');
+INSERT INTO dancers (first_name, last_name) VALUES ('Presleigh', 'Wilson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Presley', 'Grubor');
+INSERT INTO dancers (first_name, last_name) VALUES ('Quinn', 'Dollman');
+INSERT INTO dancers (first_name, last_name) VALUES ('Quinn', 'Fo');
+INSERT INTO dancers (first_name, last_name) VALUES ('ReAnn', 'Loose');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rebecca', 'Arnold');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rebekah', 'Poku');
+INSERT INTO dancers (first_name, last_name) VALUES ('Reese', 'Goodman');
+INSERT INTO dancers (first_name, last_name) VALUES ('Riley', 'Ratkovich');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rory', 'Krueger');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ruby', 'Rasch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ryann', 'Bragg');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rylee', 'Eklund');
+INSERT INTO dancers (first_name, last_name) VALUES ('Ryleigh', 'Gower');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rylie', 'Brown');
+INSERT INTO dancers (first_name, last_name) VALUES ('Rylie', 'Persons');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sadie', 'Mather');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sadie', 'McCrite');
+INSERT INTO dancers (first_name, last_name) VALUES ('Saisha', 'Sethi');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sedona', 'Flumbaugh');
+INSERT INTO dancers (first_name, last_name) VALUES ('Shay', 'Patterson');
+INSERT INTO dancers (first_name, last_name) VALUES ('Shelby', 'Bow');
+INSERT INTO dancers (first_name, last_name) VALUES ('Shweta (Ryna)', 'Arora');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sierra', 'Bohannan');
+INSERT INTO dancers (first_name, last_name) VALUES ('Skylar', 'Lizama');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sofia', 'Nava');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sofia', 'Shearer');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sophia', 'Andersen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sophia', 'Ortega');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sophie', 'Aja');
+INSERT INTO dancers (first_name, last_name) VALUES ('Sophie', 'Catuna');
+INSERT INTO dancers (first_name, last_name) VALUES ('Stephanie', 'Hansen');
+INSERT INTO dancers (first_name, last_name) VALUES ('Summer', 'Lynch');
+INSERT INTO dancers (first_name, last_name) VALUES ('Teagan', 'Turley');
+INSERT INTO dancers (first_name, last_name) VALUES ('Teanna', 'Brawley');
+INSERT INTO dancers (first_name, last_name) VALUES ('Tessa', 'Block');
+INSERT INTO dancers (first_name, last_name) VALUES ('Tosha', 'Focht');
+INSERT INTO dancers (first_name, last_name) VALUES ('Violet', 'Aleo');
+INSERT INTO dancers (first_name, last_name) VALUES ('Vivian', 'Rawlings');
+INSERT INTO dancers (first_name, last_name) VALUES ('Wae', 'Callanan-Attebery');
+INSERT INTO dancers (first_name, last_name) VALUES ('Winnie', 'Ady');
+INSERT INTO dancers (first_name, last_name) VALUES ('Zari', 'Nicely');
+INSERT INTO dancers (first_name, last_name) VALUES ('Zoe', 'Griffin');
+INSERT INTO dancers (first_name, last_name) VALUES ('Zoey', 'Moore');
+INSERT INTO dancers (first_name, last_name) VALUES ('Zyah', 'Chandiramani');
 
+
+--------------------------------------------------------------------------------
+-- Dance Dancers
+--------------------------------------------------------------------------------
 
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Shelby Bow') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Julie Burnham') /* Acro 1 */;
@@ -488,7 +568,6 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Amy Schroff') /* Adult 
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Justine Persons') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Angie Boone') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Marissa Calderone') /* Adult Tap 2 */;
--- INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Jillian Stefanski') /* Adult Tap 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Sophia Andersen') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Clara Boone') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Abigail Clark') /* Ballet & Contemporary Combo: HS */;

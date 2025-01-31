@@ -28,14 +28,23 @@ export interface Recital {
   id: 'A' | 'B' | 'C';
   recital_group_part_1: 1 | 2 | 3 | null;
   recital_group_part_2: 1 | 2 | 3 | null;
-  baby_dance_ids: string;
 }
 
 export interface RecitalDanceInstance {
   recital: 'A' | 'B' | 'C' | null;
   part: 1 | 2 | null;
   recital_group: 1 | 2 | 3 | 'T' | 'B' | null;
+  dance_style:
+    | 'Acro'
+    | 'Ballet'
+    | 'Lyrical/Modern'
+    | 'Jazz'
+    | 'Musical Theater'
+    | 'Tap'
+    | 'UNKNOWN';
   dance: string;
+  song: string;
+  artist: string;
   dancers: string[];
   choreography: `Ms. ${string}`;
   id: number | null;
