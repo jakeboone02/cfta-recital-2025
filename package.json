@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "start": "bun --hot run ./server.ts",
+    "build": "bun build ./src/index.html --outdir ./build && bun ./src/create_database.ts && cp ./src/database.db ./build"
   },
   "dependencies": {
     "react": "^19",
