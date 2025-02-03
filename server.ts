@@ -1,5 +1,6 @@
 import { Database, SQLQueryBindings } from 'bun:sqlite';
 import { Dance, RecitalDanceInstance, RecitalGroupOrder } from './src/types';
+import indexHTML from './src/index.html';
 
 const db = new Database(`./build/database.db`);
 
@@ -9,10 +10,7 @@ const getRecitalOrderData = async () =>
       await Bun.file(`./src/recital_order.sql`).text()
     )
     .all()
-    .map(d => ({
-      ...d,
-      dancers: JSON.parse(d.dancers as unknown as string),
-    }));
+    .map(d => ({ ...d, dancers: JSON.parse(d.dancers as unknown as string) }));
 
 const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down' | number) => {
   let dance_id = base_dance_id;
@@ -29,13 +27,6 @@ const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down
   console.log('This dance:', danceRecord);
 
   if (!danceRecord.recital_group && typeof direction === 'number') {
-    // const moveBabyDance = db.prepare<RecitalGroupOrder, SQLQueryBindings>(
-    //   `UPDATE recital_group_orders AS rgo_update SET follows_dance_id = COALESCE((${
-    //     direction === 'up'
-    //       ? 'SELECT follows_dance_id FROM recital_group_orders rgo_select WHERE rgo_select.dance_id = rgo_update.follows_dance_id'
-    //       : 'SELECT dance_id FROM recital_group_orders rgo_select WHERE rgo_select.follows_dance_id = rgo_update.follows_dance_id AND dance_id <> :dance_id'
-    //   }), rgo_update.follows_dance_id) WHERE dance_id = :dance_id RETURNING *`
-    // );
     const moveBabyDance = db.prepare<RecitalGroupOrder, SQLQueryBindings>(
       `UPDATE recital_group_orders SET follows_dance_id = :follows_dance_id WHERE dance_id = :dance_id RETURNING *`
     );
@@ -117,45 +108,12 @@ const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down
   }
 });
 
-const rebuildApp = async () => {
-  await Bun.build({
-    entrypoints: ['src/index.html'],
-    outdir: './build',
-  });
-  const indexHtml = Bun.file('./build/index.html');
-  await Bun.write(
-    indexHtml,
-    (
-      await indexHtml.text()
-    ).replace('__INITIAL_DATA__', JSON.stringify(await getRecitalOrderData()))
-  );
-};
-
 const server = Bun.serve({
+  static: {
+    '/': indexHTML,
+  },
   async fetch(req) {
     const path = new URL(req.url).pathname;
-
-    // Root
-    if (path === '/') {
-      await rebuildApp();
-      return new Response(await Bun.file('./build/index.html').text(), {
-        headers: { 'Content-Type': 'text/html' },
-      });
-    }
-
-    // Static files
-    if (path.endsWith('.css'))
-      return new Response(await Bun.file(`./build/${path}`).text(), {
-        headers: { 'Content-Type': 'text/css' },
-      });
-    if (path.endsWith('.js'))
-      return new Response(await Bun.file(`./build/${path}`).text(), {
-        headers: { 'Content-Type': 'text/javascript' },
-      });
-    if (path.endsWith('.html'))
-      return new Response(await Bun.file(`./build/${path}`).text(), {
-        headers: { 'Content-Type': 'text/html' },
-      });
 
     if (path === '/api/data') return Response.json(await getRecitalOrderData());
 
@@ -166,14 +124,6 @@ const server = Bun.serve({
       return Response.json({ success: true, data });
     }
 
-    // receive POST data from a form
-    // if (req.method === 'POST' && path === '/form') {
-    //   const data = await req.formData();
-    //   console.log(data.get('someField'));
-    //   return new Response('Success');
-    // }
-
-    // 404s
     return new Response('Page not found', { status: 404 });
   },
 });

@@ -1,7 +1,5 @@
-import { Fragment, useReducer, useState } from 'react';
+import { Fragment, useEffect, useReducer, useState } from 'react';
 import type { RecitalDanceInstance } from './types';
-
-declare const initialData: RecitalDanceInstance[];
 
 type MoveDance = (id: number | null, direction: 'up' | 'down' | number | null) => Promise<void>;
 
@@ -18,6 +16,7 @@ interface DanceRowProps {
 const colSpan = 6;
 
 const toCsv = (jsonArray: RecitalDanceInstance[]) => {
+  if (jsonArray.length === 0) return '';
   const headers = Object.keys(jsonArray[0]) as (keyof RecitalDanceInstance)[];
   const csvRows = ['overall_order', headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')];
 
@@ -134,7 +133,7 @@ const highlightedIDsReducer = (state: number[], action: UpdateHighlightedIDsActi
 };
 
 export const App = () => {
-  const [data, setData] = useState<RecitalDanceInstance[]>(initialData);
+  const [data, setData] = useState<RecitalDanceInstance[]>([]);
   const [highlightedIDs, highlightedIDsDispatch] = useReducer(highlightedIDsReducer, []);
 
   const fetchData = async () => {
@@ -157,6 +156,10 @@ export const App = () => {
   };
 
   const csv = toCsv(data);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="App">
