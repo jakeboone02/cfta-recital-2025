@@ -169,28 +169,28 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 --------------------------------------------------------------------------------
 
 -- Recital Group 1 Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 3, NULL);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 2, 3);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 1, 2);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 4, 1);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 5, 4);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 6, 5);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 7, 6);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 8, 7);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 9, 8);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 10, 9);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 11, 10);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 8, NULL);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 7, 8);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 9, 7);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 4, 9);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 2, 4);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 11, 2);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 10, 11);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 1, 10);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 6, 1);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 5, 6);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 3, 5);
 
 -- Recital Group 2 Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 14, NULL);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 13, 14);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 12, 13);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 15, 12);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 16, 15);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 26, 16);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 18, 26);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 19, 18);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 20, 19);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 26, NULL);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 13, 26);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 18, 13);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 16, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 14, 16);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 12, 14);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 20, 12);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 15, 20);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 19, 15);
 
 -- Recital Group 3 Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 23, NULL);
@@ -204,16 +204,16 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 29, 28);
 
 -- Recital A Baby Dance Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 4);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 8);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 12);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 16);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 20);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 2);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 13);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 12);
 
 -- Recital B Baby Dance Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 14);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 12);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 15);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 36, 22);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 37, 26);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 37, 17);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 38, 24);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 39, 28);
 
