@@ -24,7 +24,8 @@ const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down
     console.log(`Dance ${base_dance_id} not found.`);
     return;
   }
-  console.log('This dance:', danceRecord);
+  console.log('This dance:');
+  console.table(danceRecord);
 
   if (!danceRecord.recital_group && typeof direction === 'number') {
     const moveBabyDance = db.prepare<RecitalGroupOrder, SQLQueryBindings>(
@@ -79,7 +80,7 @@ const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down
     const { dance_id: following_dance_id } = selectFollowingDance.get({
       ':dance_id': dance_id,
     }) ?? { dance_id: null };
-    console.log({ preceding_dance_id, dance_id, following_dance_id });
+    console.table({ preceding_dance_id, dance_id, following_dance_id });
 
     const updateThisDance = db.prepare<RecitalGroupOrder, SQLQueryBindings>(
       `UPDATE recital_group_orders SET follows_dance_id = (SELECT dance_id FROM recital_group_orders rgo_next_dance WHERE rgo_next_dance.follows_dance_id = :dance_id) WHERE dance_id = :dance_id RETURNING *`
@@ -90,16 +91,17 @@ const moveDance = db.transaction((base_dance_id: number, direction: 'up' | 'down
     const updateDanceAfterThat = db.prepare<RecitalGroupOrder, SQLQueryBindings>(
       `UPDATE recital_group_orders SET follows_dance_id = :dance_id WHERE dance_id = :following_dance_id RETURNING *`
     );
-    console.log('Updating this dance', updateThisDance.all({ ':dance_id': dance_id }));
-    console.log(
-      'Updating next dance',
+    console.log('Updating this dance');
+    console.table(updateThisDance.all({ ':dance_id': dance_id }));
+    console.log('Updating next dance');
+    console.table(
       updateNextDance.all({
         ':dance_id': dance_id,
         ':preceding_dance_id': preceding_dance_id,
       })
     );
-    console.log(
-      'Updating dance after that',
+    console.log('Updating dance after that');
+    console.table(
       updateDanceAfterThat.all({
         ':dance_id': dance_id,
         ':following_dance_id': following_dance_id,
