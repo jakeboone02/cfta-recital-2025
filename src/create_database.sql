@@ -132,9 +132,9 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (31, NULL, 'UNKNOWN', 'When Will My Life Begin', 'Mandy Moore', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (32, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
+  VALUES (32, NULL, 'UNKNOWN', 'MERGED - Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (33, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
+  VALUES (33, NULL, 'UNKNOWN', 'MERGED - My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
 
 -- Recital B Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
@@ -156,9 +156,9 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (41, NULL, 'UNKNOWN', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (42, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Thu 11:00', 'Pre-Ballet/Tap (Thu 11:00)', 'Ms. Marissa', 0);
+  VALUES (42, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Thu 11:00', 'Pre-Ballet/Tap (Thu 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
+  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
 
 -- SpecTAPular
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
@@ -206,8 +206,8 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 -- Recital A Baby Dance Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 20);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 8);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 26);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 12);
+-- INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 32, 26);
+-- INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 33, 12);
 
 -- Recital B Baby Dance Order
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 16);
@@ -836,16 +836,16 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Juliette Ogden') /* Pr
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Riley Ratkovich') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Amelia Ratkovich') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Ella Stan') /* Pre-Ballet & Tap A - Wednesday */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (32, 'Sophie Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (32, 'Angelica Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (32, 'Hannah Ratiu') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (32, 'Mia Segura') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (32, 'Sofia Nava') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (33, 'Sophie Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (33, 'Angelica Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (33, 'Hannah Ratiu') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (33, 'Mia Segura') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (33, 'Sofia Nava') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Sophie Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Angelica Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Hannah Ratiu') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Mia Segura') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Sofia Nava') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (43, 'Sophie Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (43, 'Angelica Catuna') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (43, 'Hannah Ratiu') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (43, 'Mia Segura') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (43, 'Sofia Nava') /* Pre-Ballet & Tap B&C - Wed - Marissa */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Emmaline Ashton') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Presley Grubor') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Hannah DeSpain') /* Pre-Ballet & Tap B&C - Wed - Jillian */;

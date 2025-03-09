@@ -10,6 +10,7 @@ interface DanceRowProps {
   prev_dance?: RecitalDanceInstance;
   next_dance?: RecitalDanceInstance;
   next_next_dance?: RecitalDanceInstance;
+  second_next_dance?: RecitalDanceInstance;
   highlight?: boolean;
 }
 
@@ -56,6 +57,7 @@ export const DanceRow = ({
   prev_dance,
   next_dance,
   next_next_dance,
+  second_next_dance,
   highlight,
 }: DanceRowProps) => {
   const md_up = () =>
@@ -107,10 +109,28 @@ export const DanceRow = ({
       </td>
       <td style={{ fontSize: 'small', textAlign: 'right' }}>{dance.dancer_count}</td>
       <td style={{ fontSize: 'small' }} className="red">
+        {next_dance?.dancers.filter(d => dance.dancers.includes(d))?.join(', ').length ? (
+          <strong>In {next_dance?.dance}: </strong>
+        ) : (
+          ''
+        )}
         {next_dance?.dancers.filter(d => dance.dancers.includes(d)).join(', ')}
       </td>
       <td style={{ fontSize: 'small' }} className="orange">
+        {next_next_dance?.dancers.filter(d => dance.dancers.includes(d))?.join(', ').length ? (
+          <strong>In {next_next_dance?.dance}: </strong>
+        ) : (
+          ''
+        )}
         {next_next_dance?.dancers.filter(d => dance.dancers.includes(d)).join(', ')}
+      </td>
+      <td style={{ fontSize: 'small' }} className="gray">
+        {second_next_dance?.dancers.filter(d => dance.dancers.includes(d))?.join(', ').length ? (
+          <strong>In {second_next_dance?.dance}: </strong>
+        ) : (
+          ''
+        )}
+        {second_next_dance?.dancers.filter(d => dance.dancers.includes(d)).join(', ')}
       </td>
     </tr>
   );
@@ -183,6 +203,8 @@ export const App = () => {
             const next_dance = data[idx + 1]?.recital === dance.recital ? data[idx + 1] : undefined;
             const next_next_dance =
               data[idx + 2]?.recital === dance.recital ? data[idx + 2] : undefined;
+            const second_next_dance =
+              data[idx + 3]?.recital === dance.recital ? data[idx + 3] : undefined;
             return (
               <Fragment key={`${dance.recital}-${dance.id}`}>
                 {dance.recital !== data[idx - 1]?.recital && (
@@ -205,6 +227,7 @@ export const App = () => {
                       <th>Dancers</th>
                       <th>In Next Dance</th>
                       <th>In Dance After Next</th>
+                      <th>In Second Dance After Next</th>
                     </tr>
                   </>
                 )}
@@ -223,6 +246,7 @@ export const App = () => {
                   prev_dance={prev_dance}
                   next_dance={next_dance}
                   next_next_dance={next_next_dance}
+                  second_next_dance={second_next_dance}
                   highlight={highlightedIDs.includes(dance.id!)}
                 />
               </Fragment>

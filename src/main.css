@@ -5,8 +5,17 @@ body {
   background-color: #fcfcfc;
 }
 
+th {
+  white-space: nowrap;
+}
+
 code {
   font-family: monospace;
+}
+
+.gray {
+  color: gray;
+  font-weight: bold;
 }
 
 .red {
