@@ -72,7 +72,7 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (4, 1, 'Ballet', 'Belle of the Ball', 'Leroy Anderson, Simon Tedeschi, Paul Mann', 'Tue 5:15', 'Ballet 1', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (5, 1, 'Ballet', 'Wings', 'Little Mix', 'Tue 6:15', 'Ballet/Contemporary', 'Ms. Emilee', 0);
+  VALUES (5, 1, 'Ballet', 'Coastline', 'Hollow Coves', 'Tue 6:15', 'Ballet/Contemporary', 'Ms. Emilee', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (6, 1, 'Ballet', 'Stand By Me', 'Florence + the Machine', 'Wed 2:30', 'Ballet/Tap Combo (Wed 2:30) Ballet', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
