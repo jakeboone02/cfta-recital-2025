@@ -42,7 +42,7 @@ export interface RecitalDanceInstance {
     | 'Jazz'
     | 'Musical Theater'
     | 'Tap'
-    | 'UNKNOWN';
+    | 'BABY DANCE';
   dance: string;
   song: string;
   artist: string;

@@ -47,7 +47,7 @@ const styleColors = {
   Jazz: 'orange',
   'Musical Theater': 'rebeccapurple',
   Tap: 'green',
-  UNKNOWN: 'gray',
+  'BABY DANCE': 'gray',
 };
 
 export const DanceRow = ({

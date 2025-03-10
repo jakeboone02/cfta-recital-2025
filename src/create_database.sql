@@ -2,7 +2,7 @@ CREATE TABLE dances (
   id int PRIMARY KEY,
   recital_group int check (recital_group IN (1, 2, 3)) null,
   class_time text,
-  dance_style text check (dance_style IN ('Acro', 'Ballet', 'Lyrical/Modern', 'Jazz', 'Musical Theater', 'Tap', 'UNKNOWN')) not null,
+  dance_style text check (dance_style IN ('Acro', 'Ballet', 'Lyrical/Modern', 'Jazz', 'Musical Theater', 'Tap', 'BABY DANCE')) not null,
   dance text,
   choreography text,
   song text,
@@ -129,39 +129,39 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 
 -- Recital A Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (30, NULL, 'UNKNOWN', 'Butterfly Fly Away', 'Miley and Billy Ray Cyrus', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15) Sweethearts', 'Ms. Marissa', 0);
+  VALUES (30, NULL, 'BABY DANCE', 'Butterfly Fly Away', 'Miley and Billy Ray Cyrus', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15) Sweethearts', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (31, NULL, 'UNKNOWN', 'When Will My Life Begin', 'Mandy Moore', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa', 0);
+  VALUES (31, NULL, 'BABY DANCE', 'When Will My Life Begin', 'Mandy Moore', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (40, NULL, 'UNKNOWN', 'la la lu', 'Christina Perri', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian', 0);
+  VALUES (40, NULL, 'BABY DANCE', 'la la lu', 'Christina Perri', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (41, NULL, 'UNKNOWN', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Jillian', 0);
+  VALUES (41, NULL, 'BABY DANCE', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Jillian', 0);
 
 -- Recital B Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (38, NULL, 'UNKNOWN', 'Singin'' in the Rain', 'JJ Heller', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian', 0);
+  VALUES (38, NULL, 'BABY DANCE', 'Singin'' in the Rain', 'JJ Heller', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (39, NULL, 'UNKNOWN', 'Lollipop', 'Sophie Green', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00) Sweethearts', 'Ms. Jillian', 0);
+  VALUES (39, NULL, 'BABY DANCE', 'Lollipop', 'Sophie Green', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00) Sweethearts', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (34, NULL, 'UNKNOWN', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
+  VALUES (34, NULL, 'BABY DANCE', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (35, NULL, 'UNKNOWN', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Sweethearts', 'Ms. Marissa', 0);
+  VALUES (35, NULL, 'BABY DANCE', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Sweethearts', 'Ms. Marissa', 0);
 
 -- Recital C Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (36, NULL, 'UNKNOWN', 'Mon Cœur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
+  VALUES (36, NULL, 'BABY DANCE', 'Mon Cœur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (37, NULL, 'UNKNOWN', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Sweethearts', 'Ms. Angie', 0);
+  VALUES (37, NULL, 'BABY DANCE', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Sweethearts', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (42, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00)', 'Ms. Marissa', 0);
+  VALUES (42, NULL, 'BABY DANCE', 'Under the Sea', 'The Little Mermaid', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00) Sweethearts', 'Ms. Marissa', 0);
+  VALUES (43, NULL, 'BABY DANCE', 'My Wish', 'Rascal Flatts', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00) Sweethearts', 'Ms. Marissa', 0);
 
 -- Merged Baby Dances
 -- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
---   VALUES (32, NULL, 'UNKNOWN', 'MERGED - Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
+--   VALUES (32, NULL, 'BABY DANCE', 'MERGED - Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
 -- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
---   VALUES (33, NULL, 'UNKNOWN', 'MERGED - My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Marissa', 0);
+--   VALUES (33, NULL, 'BABY DANCE', 'MERGED - My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Marissa', 0);
 
 -- SpecTAPular
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
