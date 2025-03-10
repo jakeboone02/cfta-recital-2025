@@ -98,7 +98,7 @@ SELECT recital
                 FROM dances d
                      INNER JOIN (SELECT * FROM dance_dancers INNER JOIN dancers ON name = dancer ORDER BY last_name, first_name) dd ON d.id = dd.dance_id
                WHERE spectapular = 1) ds ON ds.ds_id = all_dance_instances.dance_id
- ORDER BY recital
+ ORDER BY recital_description
          ,part
          ,level
          ,CASE recital_group WHEN 'T' THEN 0 ELSE 1 END

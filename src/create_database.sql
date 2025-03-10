@@ -55,9 +55,9 @@ CREATE VIEW IF NOT EXISTS participants AS
 -- Recitals
 --------------------------------------------------------------------------------
 
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('A', 1, 2, 'Saturday Afternoon Recital');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('B', 2, 3, 'Friday Evening Recital');
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('C', 3, 1, 'Saturday Morning Recital');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('A', 1, 2, 'April 26 PM - Saturday Afternoon Recital');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('B', 2, 3, 'April 25 PM - Friday Evening Recital');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('C', 3, 1, 'April 26 AM - Saturday Morning Recital');
 
 --------------------------------------------------------------------------------
 -- Dances

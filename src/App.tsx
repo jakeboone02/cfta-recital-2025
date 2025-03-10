@@ -19,7 +19,7 @@ const colSpan = 6;
 const toCsv = (jsonArray: RecitalDanceInstance[]) => {
   if (jsonArray.length === 0) return '';
   const headers = Object.keys(jsonArray[0]) as (keyof RecitalDanceInstance)[];
-  const csvRows = [headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')];
+  const csvRows = [`overall_order,${headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')}`];
 
   return csvRows
     .concat(
@@ -27,7 +27,7 @@ const toCsv = (jsonArray: RecitalDanceInstance[]) => {
         [`${idx + 1}`]
           .concat(
             headers.map(header => {
-              if (header === 'dancers') return row[header].join(',');
+              if (header === 'dancers') return `"${row[header].join(', ')}"`;
               const baseString = `${row[header] ?? ''}`;
               return baseString.includes(',')
                 ? `"${baseString.replaceAll('"', '""')}"`
