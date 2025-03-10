@@ -32,6 +32,7 @@ export interface Recital {
 
 export interface RecitalDanceInstance {
   recital: 'A' | 'B' | 'C' | null;
+  recital_description: string;
   part: 1 | 2 | null;
   recital_group: 1 | 2 | 3 | 'T' | 'B' | null;
   dance_style:

@@ -32,7 +32,8 @@ CREATE TABLE recital_group_orders (
 CREATE TABLE recitals (
   id text PRIMARY KEY check (id IN ('A', 'B', 'C')),
   recital_group_part_1 int check (recital_group_part_1 IN (1, 2, 3)) null,
-  recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null
+  recital_group_part_2 int check (recital_group_part_2 IN (1, 2, 3)) null,
+  description text not null
 );
 
 --------------------------------------------------------------------------------
@@ -54,9 +55,9 @@ CREATE VIEW IF NOT EXISTS participants AS
 -- Recitals
 --------------------------------------------------------------------------------
 
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('A', 1, 2);
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('B', 2, 3);
-INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2) VALUES ('C', 3, 1);
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('A', 1, 2, 'Saturday Afternoon Recital');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('B', 2, 3, 'Friday Evening Recital');
+INSERT INTO recitals (id, recital_group_part_1, recital_group_part_2, description) VALUES ('C', 3, 1, 'Saturday Morning Recital');
 
 --------------------------------------------------------------------------------
 -- Dances

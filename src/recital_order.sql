@@ -8,6 +8,7 @@ WITH RECURSIVE dance_order AS (
          JOIN dance_order o ON o.dance_id = d.follows_dance_id
 )
 SELECT recital
+      ,recital_description
       ,part
       ,recital_group
       ,dance_style
@@ -22,6 +23,7 @@ SELECT recital
       ,COALESCE(dancers, tap_dancers) dancers
   FROM (
   SELECT r1.id recital
+          ,r1.description recital_description
           ,1 part
           ,d1.recital_group recital_group
           ,d1.dance_style
@@ -35,6 +37,7 @@ SELECT recital
            ON r1.recital_group_part_1 = d1.recital_group
   UNION ALL
     SELECT r2.id recital
+          ,r2.description recital_description
           ,2 part
           ,d2.recital_group recital_group
           ,d2.dance_style
@@ -48,6 +51,7 @@ SELECT recital
            ON r2.recital_group_part_2 = d2.recital_group
   UNION ALL
     SELECT rb.recital_id recital
+          ,rb2.description recital_description
           ,CASE rb2.recital_group_part_1 WHEN db2.recital_group THEN 1 ELSE 2 END part
           ,'B' recital_group
           ,db.dance_style
@@ -64,6 +68,7 @@ SELECT recital
    WHERE rb.recital_id IS NOT NULL
   UNION ALL
     SELECT rs.id recital
+          ,rs.description recital_description
           ,1 part
           ,'T' recital_group
           ,ds.dance_style
