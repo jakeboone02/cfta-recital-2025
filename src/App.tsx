@@ -94,18 +94,22 @@ export const DanceRow = ({
         )}
       </td>
       <td title={`ID: ${dance.id}, Follows: ${dance.follows_dance_id}`}>
-        <div className="dance">
-          <div className="dance-and-song" style={{ color: styleColors[dance.dance_style] }}>
-            <div>{dance.dance}</div>
-            <div className="song-and-artist">
-              <span className="song">{dance.song}</span>
-              {dance.artist}
+        {dance.recital_group === 'B' ? (
+          <div className="gray">Baby Dance</div>
+        ) : (
+          <div className="dance">
+            <div className="dance-and-song" style={{ color: styleColors[dance.dance_style] }}>
+              <div>{dance.dance}</div>
+              <div className="song-and-artist">
+                <span className="song">{dance.song}</span>
+                {dance.artist}
+              </div>
+            </div>
+            <div style={{ fontSize: 'small', color: 'gray' }}>
+              {dance.choreography.replace('Ms. ', '')}
             </div>
           </div>
-          <div style={{ fontSize: 'small', color: 'gray' }}>
-            {dance.choreography.replace('Ms. ', '')}
-          </div>
-        </div>
+        )}
       </td>
       <td style={{ fontSize: 'small', textAlign: 'right' }}>{dance.dancer_count}</td>
       <td style={{ fontSize: 'small' }} className="red">
