@@ -129,37 +129,39 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 
 -- Recital A Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (30, NULL, 'UNKNOWN', 'Butterfly Fly Away', 'Miley and Billy Ray Cyrus', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15) Daddy/Daughter', 'Ms. Marissa', 0);
+  VALUES (30, NULL, 'UNKNOWN', 'Butterfly Fly Away', 'Miley and Billy Ray Cyrus', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15) Sweethearts', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (31, NULL, 'UNKNOWN', 'When Will My Life Begin', 'Mandy Moore', 'Thu 4:15', 'Pre-Ballet/Tap (Thu 4:15)', 'Ms. Marissa', 0);
--- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
---   VALUES (32, NULL, 'UNKNOWN', 'MERGED - Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
--- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
---   VALUES (33, NULL, 'UNKNOWN', 'MERGED - My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
-
--- Recital B Baby Dances
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (34, NULL, 'UNKNOWN', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (35, NULL, 'UNKNOWN', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy/Daughter', 'Ms. Marissa', 0);
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (36, NULL, 'UNKNOWN', 'Mon Cœur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (37, NULL, 'UNKNOWN', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy/Daughter', 'Ms. Angie', 0);
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (38, NULL, 'UNKNOWN', 'Singin'' in the Rain', 'JJ Heller', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian', 0);
-INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (39, NULL, 'UNKNOWN', 'Lollipop', 'Sophie Green', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00) Daddy/Daughter', 'Ms. Jillian', 0);
-
--- Recital C Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (40, NULL, 'UNKNOWN', 'la la lu', 'Christina Perri', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Jillian', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (41, NULL, 'UNKNOWN', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Daddy/Daughter', 'Ms. Jillian', 0);
+  VALUES (41, NULL, 'UNKNOWN', 'My Kind of Girl', 'Buddy Greco', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Jillian', 0);
+
+-- Recital B Baby Dances
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (38, NULL, 'UNKNOWN', 'Singin'' in the Rain', 'JJ Heller', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00)', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (39, NULL, 'UNKNOWN', 'Lollipop', 'Sophie Green', 'Wed 10:00', 'Pre-Ballet/Tap (Wed 10:00) Sweethearts', 'Ms. Jillian', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (34, NULL, 'UNKNOWN', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (35, NULL, 'UNKNOWN', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Sweethearts', 'Ms. Marissa', 0);
+
+-- Recital C Baby Dances
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (36, NULL, 'UNKNOWN', 'Mon Cœur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
+INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+  VALUES (37, NULL, 'UNKNOWN', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Sweethearts', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (42, NULL, 'UNKNOWN', 'Under the Sea', 'The Little Mermaid', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00) Daddy/Daughter', 'Ms. Marissa', 0);
+  VALUES (43, NULL, 'UNKNOWN', 'My Wish', 'Rascal Flatts', 'Wed/Thu 11:00', 'Pre-Ballet/Tap (Wed/Thu 11:00) Sweethearts', 'Ms. Marissa', 0);
+
+-- Merged Baby Dances
+-- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+--   VALUES (32, NULL, 'UNKNOWN', 'MERGED - Under the Sea', 'The Little Mermaid', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00)', 'Ms. Marissa', 0);
+-- INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
+--   VALUES (33, NULL, 'UNKNOWN', 'MERGED - My Wish', 'Rascal Flatts', 'Wed 11:00', 'Pre-Ballet/Tap (Wed 11:00) Sweethearts', 'Ms. Marissa', 0);
 
 -- SpecTAPular
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
@@ -205,22 +207,22 @@ INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES (NULL, 28, 24);
 
 -- Recital A Baby Dance Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 18);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 10);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 36, 26);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 37, 7);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 30, 7);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 31, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 40, 26);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('A', 41, 10);
 
 -- Recital B Baby Dance Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 26);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 39, 26);
 INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 38, 21);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 39, 27);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 34, 18);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('B', 35, 27);
 
 -- Recital C Baby Dance Order
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 40, 21);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 41, 27);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 42, 7);
-INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 43, 10);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 36, 10);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 37, 21);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 42, 27);
+INSERT INTO recital_group_orders (recital_id, dance_id, follows_dance_id) VALUES ('C', 43, 7);
 
 --------------------------------------------------------------------------------
 -- Dancers
