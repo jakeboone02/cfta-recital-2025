@@ -19,7 +19,7 @@ const colSpan = 6;
 const toCsv = (jsonArray: RecitalDanceInstance[]) => {
   if (jsonArray.length === 0) return '';
   const headers = Object.keys(jsonArray[0]) as (keyof RecitalDanceInstance)[];
-  const csvRows = ['overall_order', headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')];
+  const csvRows = [headers.sort(a => (a === 'dancers' ? 1 : -1)).join(',')];
 
   return csvRows
     .concat(
