@@ -142,7 +142,7 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (35, NULL, 'UNKNOWN', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Daddy/Daughter', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (36, NULL, 'UNKNOWN', 'Mon Coeur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
+  VALUES (36, NULL, 'UNKNOWN', 'Mon Cœur Fait Vroum (My Heart Goes Vroom)', 'Cars 2 - Bénabar', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00)', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (37, NULL, 'UNKNOWN', 'Daughter', 'Ben Rector', 'Thu 11:00', 'Pre-Ballet/Acro (Thu 11:00) Daddy/Daughter', 'Ms. Angie', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
