@@ -774,6 +774,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Phoenix-Dawn Morkunas'
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Kekoalakakapono Morkunas') /* Musical Theater: High School */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Maleah Poku') /* Musical Theater: High School */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Rebekah Poku') /* Musical Theater: High School */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Jillian Stefanski') /* Musical Theater: High School */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (28, 'Mikaela Wells') /* Musical Theater: High School */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (34, 'Violet Aleo') /* Pre-Ballet & Acro Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (34, 'Ryann Bragg') /* Pre-Ballet & Acro Wednesday */;
