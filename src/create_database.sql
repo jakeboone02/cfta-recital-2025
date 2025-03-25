@@ -145,7 +145,7 @@ INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, da
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
   VALUES (34, NULL, 'BABY DANCE', 'Wind in My Hair', 'Rapunzel', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00)', 'Ms. Marissa', 0);
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
-  VALUES (35, NULL, 'BABY DANCE', 'Little Wonders', 'Rob Thomas', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Sweethearts', 'Ms. Marissa', 0);
+  VALUES (35, NULL, 'BABY DANCE', 'My Wish', 'Rascal Flatts', 'Wed 10:00', 'Pre-Ballet/Acro (Wed 10:00) Sweethearts', 'Ms. Marissa', 0);
 
 -- Recital C Baby Dances
 INSERT INTO dances (id, recital_group, dance_style, song, artist, class_time, dance, choreography, spectapular)
