@@ -513,7 +513,6 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Hadley Mae Lichter') /*
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Akshara Madana') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Gia McBride') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Shay Patterson') /* Acro 1 */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Makenna Reeves') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Lilli Rosinbum') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Alice Stonham') /* Acro 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Hanna Abney') /* Acro 2 */;
@@ -526,6 +525,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Zoe Griffin') /* Acro 
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Grace Hayslett') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Jillian Hester') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Josslyn Hester') /* Acro 2 */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Makenna Reeves') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Isabelle Stonham') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (21, 'Alaina Akert') /* Acro 3 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (21, 'Madi Akert') /* Acro 3 */;
