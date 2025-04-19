@@ -41,15 +41,18 @@ CREATE TABLE recitals (
 --------------------------------------------------------------------------------
 
 CREATE VIEW IF NOT EXISTS participants AS
-  SELECT
-    d.id AS dance_id,
-    d.recital_group,
-    d.class_time,
-    d.dance_style,
-    d.dance,
-    d.choreography,
-    dd.dancer
-  FROM dances d JOIN dance_dancers dd ON d.id = dd.dance_id;
+ SELECT
+   d.id AS dance_id,
+   d.recital_group,
+   d.class_time,
+   d.dance_style,
+   d.dance,
+   d.choreography,
+   dd.dancer,
+   p.first_name,
+   p.last_name
+  FROM dances d JOIN dance_dancers dd ON d.id = dd.dance_id JOIN dancers p ON p.name = dd.dancer
+ ORDER BY dance, class_time, last_name, first_name;
 
 --------------------------------------------------------------------------------
 -- Recitals
