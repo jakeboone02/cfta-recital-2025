@@ -375,7 +375,7 @@ INSERT INTO dancers (first_name, last_name) VALUES ('Jane', 'Fuss');
 INSERT INTO dancers (first_name, last_name) VALUES ('Jane', 'Hicks');
 INSERT INTO dancers (first_name, last_name) VALUES ('Janelle', 'Stayton');
 INSERT INTO dancers (first_name, last_name) VALUES ('Jenna', 'Meyerhofer');
-INSERT INTO dancers (first_name, last_name) VALUES ('Jessica', 'Scorzetti');
+INSERT INTO dancers (first_name, last_name) VALUES ('Nora', 'Scorzetti');
 INSERT INTO dancers (first_name, last_name) VALUES ('Jillian', 'Hester');
 INSERT INTO dancers (first_name, last_name) VALUES ('Jillian', 'Stefanski');
 INSERT INTO dancers (first_name, last_name) VALUES ('Jodi', 'DeLaTorre');
@@ -401,7 +401,7 @@ INSERT INTO dancers (first_name, last_name) VALUES ('Keturah', 'Lynch');
 INSERT INTO dancers (first_name, last_name) VALUES ('Kinney', 'Chen');
 INSERT INTO dancers (first_name, last_name) VALUES ('Kira', 'Shkarayeva');
 INSERT INTO dancers (first_name, last_name) VALUES ('Kristi', 'Hunter');
-INSERT INTO dancers (first_name, last_name) VALUES ('Kylie', 'Davis');
+INSERT INTO dancers (first_name, last_name) VALUES ('Kylie', 'Reid-Neal');
 INSERT INTO dancers (first_name, last_name) VALUES ('Kylie', 'Gonzalez');
 INSERT INTO dancers (first_name, last_name) VALUES ('Larsyn', 'Callanan-Attebery');
 INSERT INTO dancers (first_name, last_name) VALUES ('Leelah', 'Taylor');
@@ -522,7 +522,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (1, 'Alice Stonham') /* Acro
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Hanna Abney') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Isla Abuhmaiden') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Charlotte Ardelean') /* Acro 2 */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Kylie Davis') /* Acro 2 */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Kylie Reid-Neal') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Brielle Farcas') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Abbey Foley') /* Acro 2 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (12, 'Zoe Griffin') /* Acro 2 */;
@@ -586,7 +586,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (3, 'Connie Johnson') /* Adu
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Sophia Andersen') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Clara Boone') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Abigail Clark') /* Ballet & Contemporary Combo: HS */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Ryleigh Gower') /* Ballet & Contemporary Combo: HS */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Ryleigh Gower') /* Ballet & Contemporary Combo: HS */; -- Dropped out
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Maia Hunter') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Olivia Lenhart') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Maddie Massaro') /* Ballet & Contemporary Combo: HS */;
@@ -595,7 +595,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Brynlie Murphy') /* Bal
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Vivian Rawlings') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Eden Rawlings') /* Ballet & Contemporary Combo: HS */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Emily Ritter') /* Ballet & Contemporary Combo: HS */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Mikaela Wells') /* Ballet & Contemporary Combo: HS */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (5, 'Mikaela Wells') /* Ballet & Contemporary Combo: HS */; -- Dropped out
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (15, 'Sophie Aja') /* Ballet & Tap 1 Combo - Monday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (15, 'Hayden Bragg') /* Ballet & Tap 1 Combo - Monday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (15, 'Skylar Lizama') /* Ballet & Tap 1 Combo - Monday */;
@@ -682,7 +682,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Lucianna Arce') /* Jaz
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Alianna Arce') /* Jazz 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Emily Brunk') /* Jazz 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Juliana Conner') /* Jazz 1 */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Lucy Goodson') /* Jazz 1 */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Lucy Goodson') /* Jazz 1 */; -- Dropped out
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Jenna Meyerhofer') /* Jazz 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Joelle Murphy') /* Jazz 1 */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (17, 'Zari Nicely') /* Jazz 1 */;
@@ -826,7 +826,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (37, 'Eliana Macrides') /* P
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Ariella Burdette') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Amelia Clark') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Noelle Gunnell') /* Pre-Ballet & Tap A - Wednesday */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Chloe Hale-Banks') /* Pre-Ballet & Tap A - Wednesday */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Chloe Hale-Banks') /* Pre-Ballet & Tap A - Wednesday */; -- Dropped out
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Eve Laun') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Delaney Ogden') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Juliette Ogden') /* Pre-Ballet & Tap A - Wednesday */;
@@ -836,7 +836,7 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (38, 'Ella Stan') /* Pre-Bal
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Ariella Burdette') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Amelia Clark') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Noelle Gunnell') /* Pre-Ballet & Tap A - Wednesday */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Chloe Hale-Banks') /* Pre-Ballet & Tap A - Wednesday */;
+-- INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Chloe Hale-Banks') /* Pre-Ballet & Tap A - Wednesday */; -- Dropped out
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Eve Laun') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Delaney Ogden') /* Pre-Ballet & Tap A - Wednesday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (39, 'Juliette Ogden') /* Pre-Ballet & Tap A - Wednesday */;
@@ -859,14 +859,14 @@ INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Hannah DeSpain') /* Pr
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Aria Musarra') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Lilah Norris') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Teagan Turley') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Jessica Scorzetti') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (40, 'Nora Scorzetti') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Emmaline Ashton') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Presley Grubor') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Hannah DeSpain') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Aria Musarra') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Lilah Norris') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Teagan Turley') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
-INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Jessica Scorzetti') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
+INSERT INTO dance_dancers (dance_id, dancer) VALUES (41, 'Nora Scorzetti') /* Pre-Ballet & Tap B&C - Wed - Jillian */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Jane Hicks') /* Pre-Ballet & Tap D - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Penelope Hicks') /* Pre-Ballet & Tap D - Thursday */;
 INSERT INTO dance_dancers (dance_id, dancer) VALUES (42, 'Addie Knisley') /* Pre-Ballet & Tap D - Thursday */;
